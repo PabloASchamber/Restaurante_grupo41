@@ -2,9 +2,9 @@
 package restaurante_grupo41.Entidades;
 
 public class Mesero {
-    String nombre, usuario, pass;
-    boolean administrador;
-    int idMesero;
+    private String nombre, usuario, pass;
+    private boolean administrador;
+    private int idMesero;
 
     public Mesero() {
     }
