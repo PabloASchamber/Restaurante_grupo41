@@ -15,7 +15,7 @@ public class Restaurante_grupo41 {
         //Mesa mesa=new Mesa(6,4,true);
         MesaData mdat=new MesaData();
         //mdat.agregarMesas(mesa);
-        //mdat.eliminarMesa(mesa);
+        //mdat.eliminarMesa(6);
         
         
 //        ArrayList<Mesa> mesas = mdat.listaMesasLibres();

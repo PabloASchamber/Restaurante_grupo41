@@ -114,11 +114,11 @@ public class MesaData {
     }
     
     
-    public void eliminarMesa(Mesa mesa){
+    public void eliminarMesa(int numero){
         String sqlEliminar="DELETE FROM `mesa` WHERE numero=?";
         try {
             PreparedStatement ps = con.prepareStatement(sqlEliminar, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, mesa.getNumero());
+            ps.setInt(1, numero);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
              if(rs.next()){
