@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2023 a las 20:41:58
+-- Tiempo de generación: 04-10-2023 a las 01:06:25
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,10 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `mesa` (
   `numero` int(11) NOT NULL,
-  `pedido` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `atendida` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `mesa`
+--
+
+INSERT INTO `mesa` (`numero`, `capacidad`, `estado`, `atendida`) VALUES
+(1, 4, 1, 0),
+(2, 4, 1, 0),
+(3, 4, 1, 0),
+(4, 4, 1, 0),
+(5, 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +150,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
