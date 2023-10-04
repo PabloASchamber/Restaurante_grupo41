@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import restaurante_grupo41.Datos.ConexionBD;
 import restaurante_grupo41.Datos.MesaData;
+import restaurante_grupo41.Datos.MeseroData;
 import restaurante_grupo41.Entidades.Mesa;
+import restaurante_grupo41.Entidades.Mesero;
 
 public class Restaurante_grupo41 {
 
@@ -16,7 +18,9 @@ public class Restaurante_grupo41 {
         MesaData mdat=new MesaData();
         //mdat.agregarMesas(mesa);
         //mdat.eliminarMesa(6);
-        
+        MeseroData medat= new MeseroData ();
+//        Mesero mesero= new Mesero ("Pedro", "pedrito", "12345", 1);
+        medat.buscarMeseroPorId(1);
         
 //        ArrayList<Mesa> mesas = mdat.listaMesasLibres();
 //        for (Mesa mesa: mesas) {
@@ -28,6 +32,10 @@ public class Restaurante_grupo41 {
 //            System.out.println(mesa.getNumero());
 //        }
         
+
+
+
+
     }
     
 }

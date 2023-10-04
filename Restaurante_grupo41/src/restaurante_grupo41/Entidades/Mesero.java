@@ -9,6 +9,12 @@ public class Mesero {
     public Mesero() {
     }
 
+    public Mesero(String nombre, String usuario, String pass) {
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.pass = pass;
+    }
+
     public Mesero(String nombre, String usuario, String pass, boolean administrador) {
         this.nombre = nombre;
         this.usuario = usuario;
@@ -16,11 +22,10 @@ public class Mesero {
         this.administrador = administrador;
     }
 
-    public Mesero(String nombre, String usuario, String pass, boolean administrador, int idMesero) {
+    public Mesero(String nombre, String usuario, String pass, int idMesero) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.pass = pass;
-        this.administrador = administrador;
         this.idMesero = idMesero;
     }
 
