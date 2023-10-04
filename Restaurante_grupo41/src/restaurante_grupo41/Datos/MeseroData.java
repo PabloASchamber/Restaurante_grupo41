@@ -158,7 +158,7 @@ public class MeseroData {
         
    }
    
-   public void elminarAdministrador (Mesero mesero){
+   public void eliminarAdministrador (Mesero mesero){
      
        String sql=  "UPDATE mesero SET administrador= false WHERE idMesero=?";
        
