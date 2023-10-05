@@ -2,40 +2,42 @@
 package restaurante_grupo41.Entidades;
 
 public class Producto {
-    private int codigo, cantidad;
-    private String nombre;
-    private double precio;
+   private int idProducto;
+   private String nombre;
+   private double precio;
+   private int stock;
+   private boolean estado;
 
     public Producto() {
     }
 
-    public Producto(int cantidad, String nombre, double precio) {
-        this.cantidad = cantidad;
+    public Producto(String nombre, double precio, int stock, boolean estado) {
         this.nombre = nombre;
         this.precio = precio;
+        this.stock = stock;
+        this.estado = estado;
     }
 
-    public Producto(int codigo, int cantidad, String nombre, double precio) {
-        this.codigo = codigo;
-        this.cantidad = cantidad;
+    public Producto(int idProducto, String nombre, double precio, int stock, boolean estado) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
+        this.stock = stock;
+        this.estado = estado;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public Producto(String nombre, double precio, int stock) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
@@ -54,11 +56,28 @@ public class Producto {
         this.precio = precio;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", cantidad=" + cantidad + ", nombre=" + nombre + ", precio=" + precio + '}';
+        return "Producto{" + "idProducto=" + idProducto + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", estado=" + estado + '}';
     }
-    
-    
+   
+   
     
 }
+    
