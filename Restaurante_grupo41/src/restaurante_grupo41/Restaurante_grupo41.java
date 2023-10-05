@@ -13,14 +13,17 @@ public class Restaurante_grupo41 {
 
     public static void main(String[] args) {
         Connection cbd = ConexionBD.conectar();
-       // Mesa mesa=new Mesa(4);
+//        Mesa mesa=new Mesa(4);
         //Mesa mesa=new Mesa(6,4,true);
         MesaData mdat=new MesaData();
-        //mdat.agregarMesas(mesa);
+//        mdat.agregarMesas(mesa);
         //mdat.eliminarMesa(6);
         MeseroData medat= new MeseroData ();
-//        Mesero mesero= new Mesero ("Pedro", "pedrito", "12345", 1);
-        medat.buscarMeseroPorId(1);
+        Mesero mesero= new Mesero ("Milton", "Mil", "12345");
+//        medat.agregarMesero(mesero);
+    
+          
+          System.out.println(medat.buscarMeseroPorId(7));
         
 //        ArrayList<Mesa> mesas = mdat.listaMesasLibres();
 //        for (Mesa mesa: mesas) {

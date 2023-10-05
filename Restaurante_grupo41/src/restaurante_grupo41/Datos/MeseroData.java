@@ -22,7 +22,7 @@ public class MeseroData {
     }
 
     public void agregarMesero(Mesero mesero) {
-        String sql = " INSERT INTO mesero ( nombre, password, usuario, administrador) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO mesero( nombre, password, usuario, administrador) VALUES (?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -36,11 +36,11 @@ public class MeseroData {
 
             if (rs.next()) {
 
-                mesero.setNombre(rs.getString("nombre"));
-                mesero.setPass(rs.getString("password"));
-                mesero.setUsuario(rs.getString("usuario"));
+                mesero.setNombre(rs.getString("insert_id"));
+                mesero.setPass(rs.getString("insert_id"));
+                mesero.setUsuario(rs.getString("insert_id"));
                 mesero.setAdministrador(false);
-                mesero.setIdMesero(rs.getInt("idMesero"));
+                mesero.setIdMesero(rs.getInt("insert_id"));
 
                 JOptionPane.showMessageDialog(null, "mesero agregado correctamente");
             }
@@ -95,11 +95,11 @@ public class MeseroData {
     }
 
    public Mesero buscarMeseroPorId (int id){
-       String sql= "SELECT * FROM mesero WHERE idMesero= ?";
+       String sql= "SELECT * FROM mesero WHERE idMesero="+ id ;
        
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id);
+//            ps.setInt(1, id);
             
             ps.executeQuery();
             
@@ -109,11 +109,11 @@ public class MeseroData {
                 
                 Mesero mesero= new Mesero ();
                 
-                mesero.setNombre(rs.getString("nombre"));
-                mesero.setPass(rs.getString("password"));
-                mesero.setUsuario(rs.getString("usuario"));
+                mesero.setNombre(rs.getString("insert_id"));
+                mesero.setPass(rs.getString("insert_id"));
+                mesero.setUsuario(rs.getString("insert_id"));
                 mesero.setIdMesero(id);
-                mesero.setAdministrador(rs.getBoolean("administrador"));
+                mesero.setAdministrador(rs.getBoolean("insert_id"));
                             
                 
                  return mesero; 
