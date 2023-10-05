@@ -95,36 +95,32 @@ public class MeseroData {
    public Mesero buscarMeseroPorId (int id){
        String sql= "SELECT * FROM mesero WHERE idMesero="+ id ;
        
-        try {
-            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1, id);
-            
-            ps.executeQuery();
-            
-            ResultSet rs = ps.getGeneratedKeys();
+       try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        
+        ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                
-                Mesero mesero= new Mesero ();
-                
-                mesero.setNombre(rs.getString("insert_id"));
-                mesero.setPass(rs.getString("insert_id"));
-                mesero.setUsuario(rs.getString("insert_id"));
-                mesero.setIdMesero(id);
-                mesero.setAdministrador(rs.getBoolean("insert_id"));
-                            
-                
-                 return mesero; 
-            } else{
-             JOptionPane.showMessageDialog(null, "no se encontró ningún mesero con ese Id");  
-             
-            }
-            
-               ps.close();
-               
-        } catch (SQLException ex) {
-            Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+        if (rs.next()) {
+            Mesero mesero = new Mesero();
+
+            mesero.setIdMesero(rs.getInt("idMesero"));
+            mesero.setNombre(rs.getString("nombre"));
+            mesero.setPass(rs.getString("password"));
+            mesero.setUsuario(rs.getString("usuario"));
+            mesero.setAdministrador(rs.getBoolean("administrador"));
+
+            ps.close();
+            return mesero;
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún mesero con ese Id");
         }
+
+        ps.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
        
         return null;
        
