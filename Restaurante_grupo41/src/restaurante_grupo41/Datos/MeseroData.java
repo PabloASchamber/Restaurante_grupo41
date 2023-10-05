@@ -74,24 +74,25 @@ public class MeseroData {
         }
     }
 
-    public void eliminarMesero(Mesero mesero) {
-
-        String sql = "DELETE FROM mesero WHERE idMesero= ?";
-
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            ps.setInt(1, mesero.getIdMesero());
-            int exito = ps.executeUpdate();
-              if(exito==1){
-                JOptionPane.showMessageDialog(null, "mesero eliminado");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+    
+    public void eliminarMesero(int id) {
+   String sql = "DELETE FROM mesero WHERE idMesero = ?";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        int exito = ps.executeUpdate();
+        if (exito > 0) {
+            JOptionPane.showMessageDialog(null, "Mesero eliminado");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún mesero con ese ID");
         }
-
+        ps.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
+    
    public Mesero buscarMeseroPorId (int id){
        String sql= "SELECT * FROM mesero WHERE idMesero="+ id ;
        

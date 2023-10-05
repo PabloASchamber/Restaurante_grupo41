@@ -19,11 +19,11 @@ public class Restaurante_grupo41 {
 //        mdat.agregarMesas(mesa);
         //mdat.eliminarMesa(6);
         MeseroData medat= new MeseroData ();
-       // Mesero mesero= new Mesero ("Milton", "Mil", "12345");
+       Mesero mesero= new Mesero ("Milton", "Mil", "12345");
      //   medat.agregarMesero(mesero);
-    
+    medat.eliminarMesero(1);
           
-          System.out.println(medat.buscarMeseroPorId(1));
+//          System.out.println(medat.buscarMeseroPorId(2));
         
 //        ArrayList<Mesa> mesas = mdat.listaMesasLibres();
 //        for (Mesa mesa: mesas) {
