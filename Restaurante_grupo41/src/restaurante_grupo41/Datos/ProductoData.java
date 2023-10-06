@@ -1,6 +1,3 @@
-
-
-
 package restaurante_grupo41.Datos;
 
 import java.sql.Connection;
