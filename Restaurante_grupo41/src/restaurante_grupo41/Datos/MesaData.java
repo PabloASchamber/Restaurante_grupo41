@@ -129,6 +129,35 @@ public class MesaData {
         }   
     }
     
+    public Mesa buscarMesa(int numero){
+        String sql= "SELECT * FROM mesa WHERE numero=?";
+           try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, numero);
+        
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            Mesa mesa = new Mesa();
+      
+            mesa.setNumero(numero);
+            mesa.setCapacidad(rs.getInt("capacidad"));
+            mesa.setEstado(rs.getBoolean("estado"));
+            mesa.setAtendida(rs.getBoolean("atendida"));
+            
+            ps.close();
+            return mesa;
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún mesero con ese Id");
+        }
+
+        ps.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return null;
+        
+    }
     
     
 }

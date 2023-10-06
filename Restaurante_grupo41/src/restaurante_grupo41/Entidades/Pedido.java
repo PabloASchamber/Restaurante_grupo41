@@ -4,7 +4,6 @@ package restaurante_grupo41.Entidades;
 import java.time.LocalDate;
 
 public class Pedido {
-    private Producto producto;
     private int idpedido;
     private Mesero mesero;
     private Mesa mesa;
@@ -15,8 +14,7 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Producto producto, Mesero mesero, Mesa mesa, double total, LocalDate fechaHora, boolean cobrada) {
-        this.producto = producto;
+    public Pedido(Mesero mesero, Mesa mesa, double total, LocalDate fechaHora, boolean cobrada) {
         this.mesero = mesero;
         this.mesa = mesa;
         this.total = total;
@@ -24,22 +22,13 @@ public class Pedido {
         this.cobrada = cobrada;
     }
 
-    public Pedido(Producto producto, int idpedido, Mesero mesero, Mesa mesa, double total, LocalDate fechaHora, boolean cobrada) {
-        this.producto = producto;
+    public Pedido(int idpedido, Mesero mesero, Mesa mesa, double total, LocalDate fechaHora, boolean cobrada) {
         this.idpedido = idpedido;
         this.mesero = mesero;
         this.mesa = mesa;
         this.total = total;
         this.fechaHora = fechaHora;
         this.cobrada = cobrada;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 
     public int getIdpedido() {
@@ -92,9 +81,8 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "producto=" + producto + ", idpedido=" + idpedido + ", mesero=" + mesero + ", mesa=" + mesa + ", total=" + total + ", fechaHora=" + fechaHora + ", cobrada=" + cobrada + '}';
+        return "Pedido{" + "idpedido=" + idpedido + ", mesero=" + mesero + ", mesa=" + mesa + ", total=" + total + ", fechaHora=" + fechaHora + ", cobrada=" + cobrada + '}';
     }
 
-    
     
 }

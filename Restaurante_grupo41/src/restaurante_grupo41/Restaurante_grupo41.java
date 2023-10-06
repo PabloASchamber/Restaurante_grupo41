@@ -47,16 +47,20 @@ public class Restaurante_grupo41 {
 
 
 
-//    Producto product= new Producto ("arepa", 1200, 10, true);
+//  Producto product= new Producto (1,"arepa", 1500, 10, true);
     ProductoData prodat= new ProductoData ();
 //    prodat.agregarProducto(product);
-    prodat.eliminarProducto(prodat.buscarProducto(1));
+//    prodat.eliminarProducto(prodat.buscarProducto(1));
 //    System.out.println(prodat.buscarProducto(2));
-
-
+  
+//prodat.modificarProducto(product);
 
     
-    
+//        ArrayList<Producto> prod = prodat.listaProductos();
+//        for (Producto producto: prod) {
+//            System.out.println(producto.getNombre());
+//        }
+//    
 
     }
     

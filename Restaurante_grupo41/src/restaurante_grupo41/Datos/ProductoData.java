@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 public class ProductoData {
 
     private Connection con = null;
@@ -64,10 +65,9 @@ public class ProductoData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, producto.getIdProducto());
 
-           
             int exito = ps.executeUpdate();
 
-            if (exito>0){
+            if (exito > 0) {
 
                 JOptionPane.showMessageDialog(null, "producto borrado correctamente");
 
@@ -82,32 +82,30 @@ public class ProductoData {
 
     public void modificarProducto(Producto producto) {
 
-       String sql= "UPDATE producto SET nombreProducto=?, precio=?, stock=?, estado=? WHERE idProducto= ?"; 
-       
-       
+        String sql = "UPDATE producto SET nombreProducto=?, precio=?, stock=?, estado=? WHERE idProducto= ?";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
+
             ps.setString(1, producto.getNombre());
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
             ps.setBoolean(4, producto.isEstado());
             ps.setInt(5, producto.getIdProducto());
-            
-           int exito = ps.executeUpdate();
 
-            if (exito>0){
+            int exito = ps.executeUpdate();
+
+            if (exito > 0) {
 
                 JOptionPane.showMessageDialog(null, "producto modificado correctamente");
 
             }
-            ps.close(); 
-            
-            
+            ps.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public Producto buscarProducto(int id) {
@@ -118,8 +116,7 @@ public class ProductoData {
 
             ps.setInt(1, id);
 
-           
-         ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
@@ -130,29 +127,45 @@ public class ProductoData {
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setStock(rs.getInt("stock"));
                 producto.setEstado(rs.getBoolean("estado"));
-                
-                   ps.close();
+
+                ps.close();
                 return producto;
             } else {
 
                 JOptionPane.showMessageDialog(null, "no se encontró ningún producto");
                 return null;
-               
-                
+
             }
-           
-          
-                   
+
         } catch (SQLException ex) {
 
             Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return null;
+        return null;
     }
 
+    
     public ArrayList<Producto> listaProductos() {
-        return null;
-
+     ArrayList<Producto> listaP = new ArrayList<>();
+        String sql="SELECT * FROM producto WHERE estado=1";
+          try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+               Producto producto =new Producto();
+              producto.setIdProducto(rs.getInt("idProducto"));
+              producto.setNombre(rs.getNString("nombreProducto"));
+              producto.setPrecio(rs.getDouble("precio"));
+              producto.setStock(rs.getInt("stock"));
+              producto.setEstado(true);
+              
+              listaP.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaP;
     }
 
 }
