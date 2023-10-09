@@ -9,6 +9,11 @@ public class Mesero {
     public Mesero() {
     }
 
+    public Mesero(String nombre, int idMesero) {
+        this.nombre = nombre;
+        this.idMesero = idMesero;
+    }
+
     public Mesero(String nombre, String usuario, String pass) {
         this.nombre = nombre;
         this.usuario = usuario;
