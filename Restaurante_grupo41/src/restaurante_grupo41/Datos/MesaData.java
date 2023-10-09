@@ -148,7 +148,7 @@ public class MesaData {
             ps.close();
             return mesa;
         } else {
-            JOptionPane.showMessageDialog(null, "No se encontró ningún mesero con ese Id");
+            JOptionPane.showMessageDialog(null, "No se encontró ningúna mesa con ese numero");
         }
 
         ps.close();
@@ -158,6 +158,31 @@ public class MesaData {
         return null;
         
     }
+    
+    public void mesaAtendida(int numero){
+        String sql="UPDATE mesa SET atendida=1 WHERE numero=?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+             ps.setInt(1, numero);
+             int exito = ps.executeUpdate();
+               if (exito>0) {
+               JOptionPane.showMessageDialog(null, "la mesa "+numero+" esta atendida");
+               }else{
+                   JOptionPane.showMessageDialog(null, "error al acceder a la tabla mesa");
+               }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+        
+        
+        
+    }
+            
     
     
 }
