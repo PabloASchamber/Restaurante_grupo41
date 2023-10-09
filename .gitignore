@@ -43,3 +43,5 @@ Restaurante_grupo41/nbproject/project.properties
 Restaurante_grupo41/nbproject/project.xml
 *.properties
 *.xml
+Restaurante_grupo41/nbproject/build-impl.xml
+*.xml
