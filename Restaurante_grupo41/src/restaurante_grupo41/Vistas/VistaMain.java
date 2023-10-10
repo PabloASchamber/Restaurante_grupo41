@@ -26,6 +26,11 @@ public class VistaMain extends javax.swing.JFrame {
 
         jDesktopPane = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
+        jBMesa = new javax.swing.JButton();
+        jBMesero = new javax.swing.JButton();
+        jBPedido = new javax.swing.JButton();
+        jBProducto = new javax.swing.JButton();
+        jBAdministrador = new javax.swing.JButton();
         login = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -36,20 +41,49 @@ public class VistaMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jBMesa.setText("Mesa");
+
+        jBMesero.setText("Mesero");
+
+        jBPedido.setText("Pedido");
+
+        jBProducto.setText("Producto");
+
+        jBAdministrador.setText("Administrador");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBMesero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jBMesa)
+                .addGap(66, 66, 66)
+                .addComponent(jBMesero)
+                .addGap(63, 63, 63)
+                .addComponent(jBPedido)
+                .addGap(87, 87, 87)
+                .addComponent(jBProducto)
+                .addGap(92, 92, 92)
+                .addComponent(jBAdministrador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("usuario");
+        jLabel1.setText("Usuario");
 
-        jLabel2.setText("contraseña");
+        jLabel2.setText("Contraseña");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +93,7 @@ public class VistaMain extends javax.swing.JFrame {
 
         jLabel3.setText("logo");
 
-        jButton1.setText("ingresar");
+        jButton1.setText("Ingresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -72,9 +106,9 @@ public class VistaMain extends javax.swing.JFrame {
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(62, 62, 62)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
@@ -99,7 +133,7 @@ public class VistaMain extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         jDesktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -113,7 +147,7 @@ public class VistaMain extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 161, Short.MAX_VALUE))
+                .addGap(0, 124, Short.MAX_VALUE))
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +213,11 @@ public class VistaMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAdministrador;
+    private javax.swing.JButton jBMesa;
+    private javax.swing.JButton jBMesero;
+    private javax.swing.JButton jBPedido;
+    private javax.swing.JButton jBProducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JLabel jLabel1;

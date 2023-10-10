@@ -173,10 +173,34 @@ public class MeseroData {
         } catch (SQLException ex) {
             Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
+  
    }
    
+   public boolean ingreso (String usuario, String pass){
+      
+      String sql= "SELECT * FROM mesero WHERE usuario=? && password= ?"  ;
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            ps.setString(1, usuario);
+            ps.setString(2, pass);
+            
+            ResultSet rs= ps.executeQuery();
+            
+            if (rs.next()){
+                
+               return true;
+                
+            } else{
+                return false;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+       return false;
+   }
    
    
 }//fin
