@@ -176,30 +176,35 @@ public class MeseroData {
   
    }
    
-   public boolean ingreso (String usuario, String pass){
-      
+   public Mesero ingreso (Mesero mesero){
+      Mesero ingreso=new Mesero();
       String sql= "SELECT * FROM mesero WHERE usuario=? && password= ?"  ;
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
-            ps.setString(1, usuario);
-            ps.setString(2, pass);
+            ps.setString(1, mesero.getUsuario());
+            ps.setString(2, mesero.getPass());
             
             ResultSet rs= ps.executeQuery();
             
             if (rs.next()){
-                
-               return true;
+                ingreso.setIdMesero(rs.getInt("idmesero"));
+                ingreso.setNombre(rs.getNString("nombre"));
+                ingreso.setUsuario(mesero.getUsuario());
+                ingreso.setPass(mesero.getPass());
+                ingreso.setAdministrador(rs.getBoolean("administrador"));
+               return ingreso;
                 
             } else{
-                return false;
+                 JOptionPane.showMessageDialog(null, "datos incorrectos");
             }
+            ps.close();
            
         } catch (SQLException ex) {
             Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
         }
       
-       return false;
+       return ingreso;
    }
    
    
