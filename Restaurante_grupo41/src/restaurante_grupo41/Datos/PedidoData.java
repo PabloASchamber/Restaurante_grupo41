@@ -30,7 +30,7 @@ public class PedidoData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Mesa mesa = new Mesa();
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
@@ -47,10 +47,7 @@ public class PedidoData {
                 pedido.setMesero(mesero);
                 pedido.setTotal(rs.getDouble("importe"));
                 return pedido;
-            } else {
-
-                JOptionPane.showMessageDialog(null, "No se encontró ese pedido");
-            }
+            } 
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,6 +127,7 @@ public class PedidoData {
             if (exito ==1){
                 
                 JOptionPane.showMessageDialog(null, "Pedido cobrado correctamente");
+             
             }else{
                 
                JOptionPane.showMessageDialog(null, "No se encontró el Pedido"); 
@@ -181,7 +179,7 @@ public class PedidoData {
         try {
           PreparedStatement ps = con.prepareStatement(sql);
           ResultSet rs =ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Mesa mesa = new Mesa();
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
@@ -199,10 +197,8 @@ public class PedidoData {
                 pedido.setTotal(rs.getDouble("importe"));
                 pedidosxcobrar.add(pedido);
                 return pedidosxcobrar;
-            } else {
-
-                JOptionPane.showMessageDialog(null, "error al acceder a la tabla pedido");
-            }
+            } 
+            
             ps.close();
           
           

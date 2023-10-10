@@ -177,12 +177,29 @@ public class MesaData {
             Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-        
-        
-        
-        
+               
     }
             
+    public void limpiarMesa(int numero){
+     String sql="UPDATE mesa SET atendida=0, cobrada=0 WHERE numero=?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+             ps.setInt(1, numero);
+             int exito = ps.executeUpdate();
+               if (exito>0) {
+               JOptionPane.showMessageDialog(null, "la mesa "+numero+" esta disponible");
+               }else{
+                   JOptionPane.showMessageDialog(null, "error al acceder a la tabla mesa");
+               }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+               
     
+    }
     
-}
+}//fin

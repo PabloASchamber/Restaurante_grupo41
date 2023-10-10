@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,5 +54,74 @@ public class PedidoProductoData {
         
     }
     
+    public void cambiarPedido(PedidoProducto pp){
+        String sql="UPDATE pedidoproducto SET  idProducto=?, cantidad=?  WHERE idPedidoProducto=?";
+        
+         try {
+             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+             ps.setInt(1, pp.getProducto().getIdProducto());
+             ps.setInt(2,pp.getCantidad());
+             ps.setInt(3,pp.getPedidoProducto());
+             ps.executeUpdate();
+              ResultSet rs = ps.getGeneratedKeys();
+              if(rs.next()){
+                  JOptionPane.showMessageDialog(null, "Pedido modificado correctamente");
+              }else{
+                  JOptionPane.showMessageDialog(null, "No se pudo modificar el pedido");
+              }
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
+         }
     
-}
+    }
+    
+    public void cancelarPedido(PedidoProducto pp){
+         String sql=" DELETE FROM pedidoproducto WHERE idPedidoProducto=?";
+         try {
+             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+             ps.setInt(1,pp.getPedidoProducto());
+             int exito=ps.executeUpdate();
+             if(exito>0){
+                  JOptionPane.showMessageDialog(null, "Pedido cancelado correctamente");
+             }else{
+                  JOptionPane.showMessageDialog(null, "No se pudo cancelar el pedido");
+              }
+         } catch (SQLException ex) {
+             Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+    }
+    
+    public ArrayList<PedidoProducto> listaPedidos(){
+    
+        ArrayList<PedidoProducto> listPedido= new ArrayList<>();
+            String sql="SELECT * FROM PedidoProducto ";
+            PreparedStatement ps;
+         try {
+             ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+             ResultSet rs= ps.executeQuery();
+             while  (rs.next()){
+                 PedidoProducto pp= new PedidoProducto();
+                 PedidoData pedido=new PedidoData();
+                 ProductoData producto =new ProductoData();
+                 pp.setCantidad(rs.getInt("cantidad"));
+                 pp.setPedido(pedido.buscarPedido(rs.getInt("idPedido")));
+                 pp.setPedidoProducto(rs.getInt("idPedidoProducto"));
+                 pp.setProducto(producto.buscarProducto(rs.getInt("idProducto")));
+                 
+                 listPedido.add(pp);
+                
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
+         }
+          
+         return listPedido;
+            
+        
+    
+    
+    }
+    
+}//fin
