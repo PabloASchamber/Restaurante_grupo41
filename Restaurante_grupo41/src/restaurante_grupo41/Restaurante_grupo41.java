@@ -15,17 +15,23 @@ import restaurante_grupo41.Entidades.Mesa;
 import restaurante_grupo41.Entidades.Mesero;
 import restaurante_grupo41.Entidades.Pedido;
 import restaurante_grupo41.Entidades.Producto;
+import restaurante_grupo41.Vistas.VistaMain;
 
 public class Restaurante_grupo41 {
 
     public static void main(String[] args) {
         Connection cbd = ConexionBD.conectar();
+        
+        VistaMain vista = new VistaMain();
+        vista.setVisible(true); 
+        
+        
 //        Mesa mesa=new Mesa(4);
 //        Mesa mesa=new Mesa(1,4,true);
 //        MesaData mdat=new MesaData();
 //        mdat.agregarMesas(mesa);
         //mdat.eliminarMesa(6);
-        MeseroData medat= new MeseroData ();
+//        MeseroData medat= new MeseroData ();
 //       Mesero mesero= new Mesero ("Pablox", "Pablitox", "12345",5);
      //   medat.agregarMesero(mesero);
 //    medat.eliminarMesero(3);
@@ -33,8 +39,8 @@ public class Restaurante_grupo41 {
 //        medat.agregarAdministrador(mesero);
 //            medat.eliminarAdministrador(mesero);
 
-Mesero mesero=new Mesero("Admin", "Admin");
-       System.out.println(medat.ingreso(mesero));
+//Mesero mesero=new Mesero("Admin", "Admin");
+//       System.out.println(medat.ingreso(mesero));
 
 
           
@@ -51,7 +57,7 @@ Mesero mesero=new Mesero("Admin", "Admin");
 //        }
   
 //  Producto product= new Producto (1,"arepa", 1500, 10, true);
-    ProductoData prodat= new ProductoData ();
+//    ProductoData prodat= new ProductoData ();
 //    prodat.agregarProducto(product);
 //    prodat.eliminarProducto(prodat.buscarProducto(1));
 //    System.out.println(prodat.buscarProducto(2));
@@ -65,7 +71,7 @@ Mesero mesero=new Mesero("Admin", "Admin");
 //        }
 //    
 
-    PedidoData pedat= new PedidoData();
+//    PedidoData pedat= new PedidoData();
 //        System.out.println(pedat.buscarPedido(1));
 //    LocalDate ld= LocalDate.now ();
 //    Pedido pedido= new Pedido (mesero, mesa, 3500,ld,true);
@@ -77,5 +83,6 @@ Mesero mesero=new Mesero("Admin", "Admin");
 
 
     }
-    
+   
+        
 }

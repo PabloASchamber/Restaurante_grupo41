@@ -170,7 +170,7 @@ public class MeseroData {
 
     public Mesero ingreso(Mesero mesero) {
         Mesero ingreso = new Mesero();
-        String sqlu = "SELECT * FROM mesero WHERE usuario=?";
+        String sqlu = "SELECT * FROM mesero WHERE usuario= BINARY ?";
 
         try {
             PreparedStatement psu = con.prepareStatement(sqlu, Statement.RETURN_GENERATED_KEYS);
@@ -178,7 +178,7 @@ public class MeseroData {
             ResultSet rsu = psu.executeQuery();
             if (rsu.next()) {
 
-                String sqluc = "SELECT * FROM mesero WHERE usuario=? && password= ?";
+                String sqluc = "SELECT * FROM mesero WHERE usuario= BINARY ? && password= BINARY ?";
                 try {
 
                     PreparedStatement ps = con.prepareStatement(sqluc, Statement.RETURN_GENERATED_KEYS);
