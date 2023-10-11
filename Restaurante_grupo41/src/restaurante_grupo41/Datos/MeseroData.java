@@ -198,6 +198,7 @@ public class MeseroData {
 
                     } else {
                         JOptionPane.showMessageDialog(null, "contraseña incorrecta");
+                        return null;
                     }
 
                 } catch (SQLException ex) {
@@ -205,12 +206,14 @@ public class MeseroData {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "usuario no encontrado");
+                return null;
             }
         } catch (SQLException ex) {
             Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return ingreso;
+        return null;
+        
     }
 
 }//fin
