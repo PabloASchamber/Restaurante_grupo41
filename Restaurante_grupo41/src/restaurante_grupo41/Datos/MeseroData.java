@@ -179,7 +179,6 @@ public class MeseroData {
             if (rsu.next()) {
 
                 String sqluc = "SELECT * FROM mesero WHERE usuario= BINARY ? && password= BINARY ?";
-                try {
 
                     PreparedStatement ps = con.prepareStatement(sqluc, Statement.RETURN_GENERATED_KEYS);
 
@@ -201,9 +200,7 @@ public class MeseroData {
                         return null;
                     }
 
-                } catch (SQLException ex) {
-                    Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "usuario no encontrado");
                 return null;
