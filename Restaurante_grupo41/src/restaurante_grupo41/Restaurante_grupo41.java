@@ -33,8 +33,8 @@ public class Restaurante_grupo41 {
 //        medat.agregarAdministrador(mesero);
 //            medat.eliminarAdministrador(mesero);
 
-//Mesero mesero=new Mesero("Admin", "Admin");
-//       System.out.println(medat.ingreso(mesero));
+Mesero mesero=new Mesero("Admin", "Admin");
+       System.out.println(medat.ingreso(mesero));
 
 
           
