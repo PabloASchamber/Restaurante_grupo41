@@ -1,14 +1,21 @@
 
 package restaurante_grupo41.Vistas;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 import restaurante_grupo41.Datos.MeseroData;
 import restaurante_grupo41.Entidades.Mesero;
 
+
 public class VistaMain extends javax.swing.JFrame {
+    
+private CardLayout cardLayout;
 
     public VistaMain() {
         initComponents();
         jPanelOpciones.setVisible(false);
+        
+     
     }
 
     /**
@@ -28,6 +35,7 @@ public class VistaMain extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLNombre = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
+        jbListaPedido = new javax.swing.JButton();
         login = new javax.swing.JPanel();
         jLUsuario = new javax.swing.JLabel();
         jLPass = new javax.swing.JLabel();
@@ -41,8 +49,18 @@ public class VistaMain extends javax.swing.JFrame {
         jDesktopPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBMesa.setText("Mesa");
+        jBMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMesaActionPerformed(evt);
+            }
+        });
 
         jBMesero.setText("Mesero");
+        jBMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMeseroActionPerformed(evt);
+            }
+        });
 
         jBPedido.setText("Pedido");
 
@@ -59,26 +77,32 @@ public class VistaMain extends javax.swing.JFrame {
             }
         });
 
+        jbListaPedido.setText("Lista Pedidos");
+
         javax.swing.GroupLayout jPanelOpcionesLayout = new javax.swing.GroupLayout(jPanelOpciones);
         jPanelOpciones.setLayout(jPanelOpcionesLayout);
         jPanelOpcionesLayout.setHorizontalGroup(
             jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelOpcionesLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jBSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBMesero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBMesa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBAdministrador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(jPanelOpcionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
+            .addGroup(jPanelOpcionesLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbListaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelOpcionesLayout.createSequentialGroup()
+                        .addGroup(jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jBSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBMesero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBMesa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBAdministrador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelOpcionesLayout.setVerticalGroup(
             jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +117,9 @@ public class VistaMain extends javax.swing.JFrame {
                 .addComponent(jBMesero)
                 .addGap(61, 61, 61)
                 .addComponent(jBPedido)
-                .addGap(60, 60, 60)
+                .addGap(26, 26, 26)
+                .addComponent(jbListaPedido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBProducto)
                 .addGap(52, 52, 52)
                 .addComponent(jBAdministrador)
@@ -213,6 +239,21 @@ public class VistaMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBSalirActionPerformed
 
+    private void jBMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMesaActionPerformed
+     
+        VistaMesa vm = new VistaMesa();
+        vm.setVisible(true);
+        jDesktopPane.add(vm);
+        
+        vm.setBounds (271,0, 730,vm.getPreferredSize().height);
+   
+        
+    }//GEN-LAST:event_jBMesaActionPerformed
+
+    private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
+       
+    }//GEN-LAST:event_jBMeseroActionPerformed
+
  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -263,6 +304,7 @@ public class VistaMain extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPPass;
     private javax.swing.JPanel jPanelOpciones;
     private javax.swing.JTextField jTUsuario;
+    private javax.swing.JButton jbListaPedido;
     private javax.swing.JPanel login;
     // End of variables declaration//GEN-END:variables
 }

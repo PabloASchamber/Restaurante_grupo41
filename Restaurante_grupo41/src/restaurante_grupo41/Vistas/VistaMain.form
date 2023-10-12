@@ -50,23 +50,29 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jBSalir" max="32767" attributes="0"/>
-                          <Component id="jBMesero" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBPedido" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBMesa" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBProducto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBAdministrador" alignment="0" pref="136" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="59" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLNombre" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jbListaPedido" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jBSalir" max="32767" attributes="0"/>
+                                  <Component id="jBMesero" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jBPedido" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jBMesa" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jBProducto" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jBAdministrador" alignment="0" pref="136" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -84,7 +90,9 @@
                       <Component id="jBMesero" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="jBPedido" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jbListaPedido" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jBProducto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="jBAdministrador" min="-2" max="-2" attributes="0"/>
@@ -100,11 +108,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mesa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBMesaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBMesero">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mesero"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBMeseroActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBPedido">
               <Properties>
@@ -135,6 +149,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbListaPedido">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lista Pedidos"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
