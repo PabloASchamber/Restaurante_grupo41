@@ -38,7 +38,9 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jbVolver = new javax.swing.JButton();
         jlMesas = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(32767, 32767));
+        setPreferredSize(new java.awt.Dimension(730, 620));
 
         jpVistaMesa.setPreferredSize(new java.awt.Dimension(734, 624));
 
@@ -93,7 +95,7 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                 .addGroup(jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpVistaMesaLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jpVistaMesaLayout.createSequentialGroup()
                         .addGap(245, 245, 245)

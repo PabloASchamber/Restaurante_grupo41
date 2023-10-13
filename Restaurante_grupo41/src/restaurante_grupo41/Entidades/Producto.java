@@ -7,6 +7,7 @@ public class Producto {
    private double precio;
    private int stock;
    private boolean estado;
+   
 
     public Producto() {
     }

@@ -160,7 +160,7 @@
         <Container class="javax.swing.JPanel" name="login">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="271" y="0" width="730" height="-1"/>
+              <AbsoluteConstraints x="231" y="0" width="770" height="-1"/>
             </Constraint>
           </Constraints>
 
@@ -182,7 +182,7 @@
                           </Group>
                           <Component id="jLogo" min="-2" pref="116" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="462" max="32767" attributes="0"/>
+                      <EmptySpace pref="502" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -165,7 +165,7 @@ private CardLayout cardLayout;
                         .addComponent(jTUsuario)
                         .addComponent(jPPass, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                     .addComponent(jLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(462, Short.MAX_VALUE))
+                .addContainerGap(502, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +185,7 @@ private CardLayout cardLayout;
                 .addContainerGap(201, Short.MAX_VALUE))
         );
 
-        jDesktopPane.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 0, 730, -1));
+        jDesktopPane.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 0, 770, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
