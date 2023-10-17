@@ -65,6 +65,11 @@ private CardLayout cardLayout;
         jBPedido.setText("Pedido");
 
         jBProducto.setText("Producto");
+        jBProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBProductoActionPerformed(evt);
+            }
+        });
 
         jBAdministrador.setText("Administrador");
 
@@ -253,6 +258,12 @@ private CardLayout cardLayout;
     private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
        
     }//GEN-LAST:event_jBMeseroActionPerformed
+
+    private void jBProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProductoActionPerformed
+        VistaProducto vp=new VistaProducto();
+        vp.setVisible(true);
+         jDesktopPane.add(vp);
+    }//GEN-LAST:event_jBProductoActionPerformed
 
  
     public static void main(String args[]) {
