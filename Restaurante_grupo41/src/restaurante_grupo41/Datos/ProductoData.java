@@ -249,6 +249,29 @@ public class ProductoData {
     }
     
     
-    
+      public ArrayList<Producto> listaTipo(String tipo) {
+     ArrayList<Producto> listaP = new ArrayList<>();
+        String sql="SELECT * FROM producto WHERE tipo like ? ";
+          try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, tipo);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+               Producto producto =new Producto();
+              producto.setIdProducto(rs.getInt("idProducto"));
+              producto.setNombre(rs.getNString("nombreProducto"));
+              producto.setPrecio(rs.getDouble("precio"));
+              producto.setStock(rs.getInt("stock"));
+              producto.setTipo(tipo);
+              producto.setEstado(true);
+              
+              listaP.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaP;
+    }
 
 }
