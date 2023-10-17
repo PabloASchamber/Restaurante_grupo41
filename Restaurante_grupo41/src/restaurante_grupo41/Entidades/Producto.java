@@ -3,34 +3,37 @@ package restaurante_grupo41.Entidades;
 
 public class Producto {
    private int idProducto;
-   private String nombre;
+   private String nombre, tipo;
    private double precio;
    private int stock;
    private boolean estado;
-   
+  
 
     public Producto() {
     }
 
-    public Producto(String nombre, double precio, int stock, boolean estado) {
+    public Producto(String nombre, String tipo, double precio, int stock) {
         this.nombre = nombre;
+        this.tipo = tipo;
+        this.precio = precio;
+        this.stock = stock;
+    }
+
+    public Producto(String nombre, String tipo, double precio, int stock, boolean estado) {
+        this.nombre = nombre;
+        this.tipo = tipo;
         this.precio = precio;
         this.stock = stock;
         this.estado = estado;
     }
 
-    public Producto(int idProducto, String nombre, double precio, int stock, boolean estado) {
+    public Producto(int idProducto, String nombre, String tipo, double precio, int stock, boolean estado) {
         this.idProducto = idProducto;
         this.nombre = nombre;
+        this.tipo = tipo;
         this.precio = precio;
         this.stock = stock;
         this.estado = estado;
-    }
-
-    public Producto(String nombre, double precio, int stock) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
     }
 
     public int getIdProducto() {
@@ -47,6 +50,14 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public double getPrecio() {
@@ -75,10 +86,13 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "idProducto=" + idProducto + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", estado=" + estado + '}';
+        return "Producto{" + "nombre=" + nombre + ", tipo=" + tipo + ", precio=" + precio + ", stock=" + stock + '}';
     }
-   
-   
+
+
+
+
+    
     
 }
     

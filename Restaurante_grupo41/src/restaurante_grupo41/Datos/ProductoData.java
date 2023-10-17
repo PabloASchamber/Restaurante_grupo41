@@ -23,7 +23,7 @@ public class ProductoData {
 
     public void agregarProducto(Producto producto) {
 
-        String sql = "INSERT INTO producto( nombreProducto, precio, stock, estado) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO producto( nombreProducto, precio, stock, estado, tipo) VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -32,6 +32,7 @@ public class ProductoData {
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
             ps.setBoolean(4, producto.isEstado());
+            ps.setString(5, producto.getTipo());
 
             ps.executeUpdate();
 
@@ -42,6 +43,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("insert_id"));
                 producto.setPrecio(rs.getDouble("insert_id"));
                 producto.setStock(rs.getInt("insert_id"));
+                producto.setTipo(rs.getString("tipo"));
                 producto.setEstado(rs.getBoolean("insert_id"));
 
                 JOptionPane.showMessageDialog(null, "producto agregado correctamente");
@@ -82,7 +84,7 @@ public class ProductoData {
 
     public void modificarProducto(Producto producto) {
 
-        String sql = "UPDATE producto SET nombreProducto=?, precio=?, stock=?, estado=? WHERE idProducto= ?";
+        String sql = "UPDATE producto SET nombreProducto=?, precio=?, stock=?, estado=?, tipo=? WHERE idProducto= ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -91,8 +93,9 @@ public class ProductoData {
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
             ps.setBoolean(4, producto.isEstado());
-            ps.setInt(5, producto.getIdProducto());
-
+            ps.setString(5, producto.getTipo());
+            ps.setInt(6, producto.getIdProducto());
+          
             int exito = ps.executeUpdate();
 
             if (exito > 0) {
@@ -126,6 +129,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("nombreProducto"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setStock(rs.getInt("stock"));
+                producto.setTipo(rs.getString("tipo"));
                 producto.setEstado(rs.getBoolean("estado"));
 
                 ps.close();
@@ -157,6 +161,7 @@ public class ProductoData {
               producto.setNombre(rs.getNString("nombreProducto"));
               producto.setPrecio(rs.getDouble("precio"));
               producto.setStock(rs.getInt("stock"));
+              producto.setTipo(rs.getString("tipo"));
               producto.setEstado(true);
               
               listaP.add(producto);
@@ -167,5 +172,83 @@ public class ProductoData {
         }
         return listaP;
     }
+    
+    
+     public ArrayList<Producto> listaBebidas() {
+     ArrayList<Producto> listaP = new ArrayList<>();
+        String sql="SELECT * FROM producto WHERE tipo like 'bebida' ";
+          try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+               Producto producto =new Producto();
+              producto.setIdProducto(rs.getInt("idProducto"));
+              producto.setNombre(rs.getNString("nombreProducto"));
+              producto.setPrecio(rs.getDouble("precio"));
+              producto.setStock(rs.getInt("stock"));
+              producto.setTipo(rs.getString("tipo"));
+              producto.setEstado(true);
+              
+              listaP.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaP;
+    }
+    
+    
+    public ArrayList<Producto> listaComida() {
+     ArrayList<Producto> listaP = new ArrayList<>();
+        String sql="SELECT * FROM producto WHERE tipo like 'comida' ";
+          try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+               Producto producto =new Producto();
+              producto.setIdProducto(rs.getInt("idProducto"));
+              producto.setNombre(rs.getNString("nombreProducto"));
+              producto.setPrecio(rs.getDouble("precio"));
+              producto.setStock(rs.getInt("stock"));
+              producto.setTipo(rs.getString("tipo"));
+              producto.setEstado(true);
+              
+              listaP.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaP;
+    }
+    
+    
+    public ArrayList<Producto> listaPostre() {
+     ArrayList<Producto> listaP = new ArrayList<>();
+        String sql="SELECT * FROM producto WHERE tipo like 'postre' ";
+          try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+               Producto producto =new Producto();
+              producto.setIdProducto(rs.getInt("idProducto"));
+              producto.setNombre(rs.getNString("nombreProducto"));
+              producto.setPrecio(rs.getDouble("precio"));
+              producto.setStock(rs.getInt("stock"));
+              producto.setTipo(rs.getString("tipo"));
+              producto.setEstado(true);
+              
+              listaP.add(producto);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaP;
+    }
+    
+    
+    
 
 }

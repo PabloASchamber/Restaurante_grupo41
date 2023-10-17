@@ -111,21 +111,21 @@ private CardLayout cardLayout;
                 .addGroup(jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                .addGap(32, 32, 32)
                 .addComponent(jBMesa)
-                .addGap(60, 60, 60)
+                .addGap(18, 18, 18)
                 .addComponent(jBMesero)
-                .addGap(61, 61, 61)
+                .addGap(18, 18, 18)
                 .addComponent(jBPedido)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jbListaPedido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jBProducto)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addComponent(jBAdministrador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(jBSalir)
-                .addGap(43, 43, 43))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         jDesktopPane.add(jPanelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, -1, -1));
@@ -191,7 +191,7 @@ private CardLayout cardLayout;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
+            .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

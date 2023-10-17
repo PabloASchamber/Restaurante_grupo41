@@ -85,7 +85,7 @@
                           <Component id="jTextField4" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="258" max="32767" attributes="0"/>
+                  <EmptySpace pref="296" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
