@@ -199,9 +199,18 @@ public class VistaProducto extends javax.swing.JInternalFrame {
        jTf_precio.setText(precio.toString());
        Integer stock = producto.getStock();
        jTf_stock.setText(stock.toString());
-       String tipo =producto.getTipo();
+       String tipo = producto.getTipo();
        
-       jCb_tipo.setSelectedItem(tipo); //hay que ver si anda bien
+         for (int i = 0; i<4;i++){
+      if (jCb_tipo.getItemAt(i).toString().contains (tipo)){
+          
+        jCb_tipo.setSelectedIndex(i);
+        }   
+       
+         }
+  
+      
+      
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
@@ -210,7 +219,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         double precio = Double.parseDouble(jTf_precio.getText().trim());
         int stock= Integer.parseInt(jTf_stock.getText().trim());
         
-        String tipo= jCb_tipo.getSelectedItem().toString(); //hay que ver si anda bien
+        int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
+        String tipo = jCb_tipo.getItemAt(valor);
         
         Producto producto=new Producto(nombre, tipo, precio, stock);
         prodat.agregarProducto(producto);
@@ -222,7 +232,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         double precio = Double.parseDouble(jTf_precio.getText().trim());
         int stock= Integer.parseInt(jTf_stock.getText().trim());
         
-        String tipo= jCb_tipo.getSelectedItem().toString(); //hay que ver si anda bien
+        int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
+        String tipo = jCb_tipo.getItemAt(valor);
         
         Producto producto=new Producto(nombre, tipo, precio, stock, true );
         prodat.modificarProducto(producto);
@@ -234,8 +245,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         String nombre=jTf_nombre.getText().trim();
         double precio = Double.parseDouble(jTf_precio.getText().trim());
         int stock= Integer.parseInt(jTf_stock.getText().trim());
-        
-        String tipo= jCb_tipo.getSelectedItem().toString(); //hay que ver si anda bien
+        int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
+        String tipo = jCb_tipo.getItemAt(valor);
         
         Producto producto=new Producto(id,nombre, tipo, precio, stock, true);
         
@@ -251,6 +262,20 @@ public void cargarCombo(){
         jCb_tipo.addItem(opcion.getLabel());
     }
    }
+
+private int valorTipo(String tipo){
+     
+    for (int i = 0; i<4;i++){
+      if (jCb_tipo.getItemAt(i).toString().contains (tipo)){
+          
+       jCb_tipo.setSelectedIndex(i);
+       return i;
+        }       
+    
+}
+    return 0;
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBBuscar;
