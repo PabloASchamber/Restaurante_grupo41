@@ -46,8 +46,6 @@ private CardLayout cardLayout;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jBMesa.setText("Mesa");
         jBMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,8 +131,6 @@ private CardLayout cardLayout;
                 .addContainerGap(219, Short.MAX_VALUE))
         );
 
-        jDesktopPane.add(jPanelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, -1, -1));
-
         jLUsuario.setText("Usuario");
 
         jLPass.setText("Contraseña");
@@ -190,13 +186,31 @@ private CardLayout cardLayout;
                 .addContainerGap(201, Short.MAX_VALUE))
         );
 
-        jDesktopPane.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 0, 770, -1));
+        jDesktopPane.setLayer(jPanelOpciones, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(login, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
+        jDesktopPane.setLayout(jDesktopPaneLayout);
+        jDesktopPaneLayout.setHorizontalGroup(
+            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addComponent(jPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jDesktopPaneLayout.setVerticalGroup(
+            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
+            .addComponent(jDesktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

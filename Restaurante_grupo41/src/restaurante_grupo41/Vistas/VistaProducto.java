@@ -228,14 +228,17 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
          ProductoData prodat = new ProductoData();
+         int id= Integer.parseInt(jtf_Id.getText().trim());
         String nombre=jTf_nombre.getText().trim();
         double precio = Double.parseDouble(jTf_precio.getText().trim());
         int stock= Integer.parseInt(jTf_stock.getText().trim());
         
         int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
-        String tipo = jCb_tipo.getItemAt(valor);
+        System.out.println(valor);
+        System.out.println(jCb_tipo.getSelectedItem().toString());
+        String tipo = (String) jCb_tipo.getItemAt(valor);
         
-        Producto producto=new Producto(nombre, tipo, precio, stock, true );
+        Producto producto=new Producto(id, nombre, tipo, precio, stock, true );
         prodat.modificarProducto(producto);
     }//GEN-LAST:event_jBModificarActionPerformed
 
