@@ -190,7 +190,9 @@ public class VistaPedido extends javax.swing.JInternalFrame {
     }
    }
     
-
+public void cargarTabla(){
+    
+}
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -197,9 +197,28 @@ public class MesaData {
         } catch (SQLException ex) {
             Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-               
-    
+
+    }
+
+    public ArrayList<Mesa> listaMesas(){
+         ArrayList<Mesa> mesas = new ArrayList<>();
+         String sqlLista="select * from mesa ";
+        try {
+            PreparedStatement ps=con.prepareStatement(sqlLista);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+                Mesa mesa=new Mesa();
+                mesa.setNumero(rs.getInt("numero"));
+                mesa.setCapacidad(rs.getInt("capacidad"));
+                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setAtendida(rs.getBoolean("atendida"));
+                mesas.add(mesa);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mesas;
     }
     
 }//fin

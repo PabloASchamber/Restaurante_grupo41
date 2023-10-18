@@ -31,6 +31,11 @@ public class Pedido {
         this.cobrada = cobrada;
     }
 
+    public Pedido(Mesa mesa, double total) {
+        this.mesa = mesa;
+        this.total = total;
+    }
+
     public int getIdpedido() {
         return idpedido;
     }

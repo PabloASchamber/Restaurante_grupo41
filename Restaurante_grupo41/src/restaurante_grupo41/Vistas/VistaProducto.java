@@ -222,7 +222,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
         String tipo = jCb_tipo.getItemAt(valor);
         
-        Producto producto=new Producto(nombre, tipo, precio, stock);
+        Producto producto=new Producto(nombre, tipo, precio, stock, true);
         prodat.agregarProducto(producto);
     }//GEN-LAST:event_jBAgregarActionPerformed
 

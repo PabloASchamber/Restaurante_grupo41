@@ -250,6 +250,76 @@ public class PedidoData {
     }
     
     
+          public ArrayList<Pedido> listaPedidos(){
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        String sql= "SELECT * FROM pedido JOIN pedidoproducto ON pedidoproducto.idPedido = pedido.idPedido JOIN mesero ON pedido.mesero = mesero.idmesero JOIN mesa ON pedido.idmesa = mesa.numero";
+
+        try {
+          PreparedStatement ps = con.prepareStatement(sql);
+          ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Mesa mesa = new Mesa();
+                Mesero mesero = new Mesero();
+                mesa.setNumero(rs.getInt("numero"));
+                mesa.setCapacidad(rs.getInt("capacidad"));
+                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setAtendida(rs.getBoolean("atendida"));
+                mesero.setIdMesero(rs.getInt("idMesero"));
+                mesero.setNombre(rs.getString("nombre"));
+                Pedido pedido = new Pedido();
+                pedido.setMesa(mesa);
+                pedido.setIdpedido(rs.getInt("idPedido"));
+                pedido.setFechaHora(rs.getDate("fechahora").toLocalDate());
+                pedido.setCobrada(rs.getBoolean("cobrada"));
+                pedido.setMesero(mesero);
+                pedido.setTotal(rs.getDouble("importe"));
+                pedidos.add(pedido);
+                return pedidos;
+            } 
+            
+            ps.close();
+          
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+          
+            public Pedido buscarPedidoMesa(int nro) {
+        String sql = "SELECT * FROM pedido JOIN pedidoproducto ON pedidoproducto.idPedido = pedido.idPedido JOIN mesero ON pedido.mesero = mesero.idmesero JOIN mesa ON pedido.idmesa = mesa.numero WHERE pedido.idmesa=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nro);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Mesa mesa = new Mesa();
+                Mesero mesero = new Mesero();
+                mesa.setNumero(rs.getInt("numero"));
+                mesa.setCapacidad(rs.getInt("capacidad"));
+                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setAtendida(rs.getBoolean("atendida"));
+                mesero.setIdMesero(rs.getInt("idMesero"));
+                mesero.setNombre(rs.getString("nombre"));
+                Pedido pedido = new Pedido();
+                pedido.setMesa(mesa);
+                pedido.setIdpedido(rs.getInt("idpedido"));
+                pedido.setFechaHora(rs.getDate("fechahora").toLocalDate());
+                pedido.setCobrada(rs.getBoolean("cobrada"));
+                pedido.setMesero(mesero);
+                pedido.setTotal(rs.getDouble("importe"));
+                return pedido;
+            } 
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
     
     
 }// fin

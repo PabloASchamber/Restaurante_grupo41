@@ -43,7 +43,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("insert_id"));
                 producto.setPrecio(rs.getDouble("insert_id"));
                 producto.setStock(rs.getInt("insert_id"));
-                producto.setTipo(rs.getString("tipo"));
+                producto.setTipo(rs.getString("insert_id"));
                 producto.setEstado(rs.getBoolean("insert_id"));
 
                 JOptionPane.showMessageDialog(null, "producto agregado correctamente");
