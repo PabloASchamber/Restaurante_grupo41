@@ -115,13 +115,14 @@ public class MesaData {
     
     
     public void eliminarMesa(int numero){
-        String sqlEliminar="DELETE FROM `mesa` WHERE numero=?";
+        String sqlEliminar="DELETE FROM mesa WHERE numero=?";
         try {
-            PreparedStatement ps = con.prepareStatement(sqlEliminar, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sqlEliminar);
             ps.setInt(1, numero);
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-             if(rs.next()){
+             int exito = ps.executeUpdate();
+             
+               if (exito>0) {
+             
               JOptionPane.showMessageDialog(null, "mesa borrada correctamente");
             }
         } catch (SQLException ex) {
@@ -181,7 +182,7 @@ public class MesaData {
     }
             
     public void limpiarMesa(int numero){
-     String sql="UPDATE mesa SET atendida=0, cobrada=0 WHERE numero=?";
+     String sql="UPDATE mesa SET atendida=0, estado=1 WHERE numero=?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -221,4 +222,25 @@ public class MesaData {
         return mesas;
     }
     
+    
+    
+     public void ocuparMesa(int numero){
+     String sql="UPDATE mesa SET atendida=0, estado=0 WHERE numero=?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+             ps.setInt(1, numero);
+             int exito = ps.executeUpdate();
+               if (exito>0) {
+               JOptionPane.showMessageDialog(null, "la mesa "+numero+" está ocupada");
+               }else{
+                   JOptionPane.showMessageDialog(null, "error al acceder a la tabla mesa");
+               }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }//fin
