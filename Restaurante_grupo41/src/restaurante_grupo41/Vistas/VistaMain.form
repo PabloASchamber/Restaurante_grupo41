@@ -136,6 +136,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pedido"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPedidoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBProducto">
               <Properties>
@@ -149,6 +152,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrador"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAdministradorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
@@ -169,6 +175,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista Pedidos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbListaPedidoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

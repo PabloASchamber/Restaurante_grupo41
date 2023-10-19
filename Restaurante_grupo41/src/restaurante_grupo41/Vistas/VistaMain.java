@@ -15,6 +15,7 @@ private CardLayout cardLayout;
         initComponents();
         jPanelOpciones.setVisible(false);
         
+        
      
     }
 
@@ -61,6 +62,11 @@ private CardLayout cardLayout;
         });
 
         jBPedido.setText("Pedido");
+        jBPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPedidoActionPerformed(evt);
+            }
+        });
 
         jBProducto.setText("Producto");
         jBProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +76,11 @@ private CardLayout cardLayout;
         });
 
         jBAdministrador.setText("Administrador");
+        jBAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAdministradorActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
@@ -81,6 +92,11 @@ private CardLayout cardLayout;
         });
 
         jbListaPedido.setText("Lista Pedidos");
+        jbListaPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbListaPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelOpcionesLayout = new javax.swing.GroupLayout(jPanelOpciones);
         jPanelOpciones.setLayout(jPanelOpcionesLayout);
@@ -229,7 +245,7 @@ private CardLayout cardLayout;
         String pass=jPPass.getText().trim();
         Mesero mesero= new Mesero(usuario,pass);
         MeseroData medat=new MeseroData();
-        Mesero m = medat.ingreso(mesero);
+       this.m = medat.ingreso(mesero);
         
         if(m!=null){
              jPanelOpciones.setVisible(true);
@@ -245,7 +261,6 @@ private CardLayout cardLayout;
          } 
         }
            
-        
     }//GEN-LAST:event_jBIngresarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
@@ -263,14 +278,15 @@ private CardLayout cardLayout;
         VistaMesa vm = new VistaMesa();
         vm.setVisible(true);
         jDesktopPane.add(vm);
-        
-        vm.setBounds (271,0, 730,vm.getPreferredSize().height);
-   
-        
+       
     }//GEN-LAST:event_jBMesaActionPerformed
 
     private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
-       
+    
+        VistaMesero vme= new VistaMesero (m);
+        vme.setVisible(true);
+        jDesktopPane.add(vme);
+     
     }//GEN-LAST:event_jBMeseroActionPerformed
 
     private void jBProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProductoActionPerformed
@@ -278,6 +294,25 @@ private CardLayout cardLayout;
         vp.setVisible(true);
          jDesktopPane.add(vp);
     }//GEN-LAST:event_jBProductoActionPerformed
+
+    private void jbListaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListaPedidoActionPerformed
+      VistaListaPedido vlp= new VistaListaPedido ();
+      vlp.setVisible(true);
+      jDesktopPane.add(vlp);
+        
+    }//GEN-LAST:event_jbListaPedidoActionPerformed
+
+    private void jBAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdministradorActionPerformed
+       VistaAdministrador va= new VistaAdministrador();
+       va.setVisible(true);
+        jDesktopPane.add (va);
+    }//GEN-LAST:event_jBAdministradorActionPerformed
+
+    private void jBPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidoActionPerformed
+        VistaPedido vpe= new VistaPedido ();
+        vpe.setVisible(true);
+         jDesktopPane.add (vpe);
+    }//GEN-LAST:event_jBPedidoActionPerformed
 
  
     public static void main(String args[]) {
@@ -312,15 +347,12 @@ private CardLayout cardLayout;
         });
     }
 
-    public Mesero validarDatos(){
-         String usuario=jTUsuario.getText().trim();
-        String pass=jPPass.getText().trim();
-        Mesero mesero= new Mesero(usuario,pass);
-        MeseroData medat=new MeseroData();
-        Mesero m = medat.ingreso(mesero);
-        
-        return m;
-    }
+    
+    
+    private Mesero m= new Mesero ();
+    
+   
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAdministrador;
