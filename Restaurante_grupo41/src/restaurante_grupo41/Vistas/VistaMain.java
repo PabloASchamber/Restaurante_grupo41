@@ -312,6 +312,16 @@ private CardLayout cardLayout;
         });
     }
 
+    public Mesero validarDatos(){
+         String usuario=jTUsuario.getText().trim();
+        String pass=jPPass.getText().trim();
+        Mesero mesero= new Mesero(usuario,pass);
+        MeseroData medat=new MeseroData();
+        Mesero m = medat.ingreso(mesero);
+        
+        return m;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAdministrador;
     private javax.swing.JButton jBIngresar;
