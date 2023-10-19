@@ -153,10 +153,6 @@ public class VistaMesero extends javax.swing.JInternalFrame {
                             .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
@@ -180,7 +176,11 @@ public class VistaMesero extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jtIdMesero, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                                     .addComponent(jTNombre))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(39, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,6 +338,30 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         modelo.addColumn ("contraseña");
         modelo.addColumn ("id");
         jTable1.setModel(modelo);
+    }
+    
+    public void cargarDatos (){
+        
+    jTable1.getModel();
+        modelo.setRowCount(0);
+       jTable1.repaint();
+      
+
+        ArrayList<Mesa> mesas = md.listaMesas();
+        PedidoData pd = new PedidoData();
+        for (Mesa ms : mesas) {
+            Pedido pedido = pd.buscarPedidoMesa(ms.getNumero());
+            double total;
+
+            if (pedido == null) {
+                total = 0;
+            } else {
+                total = pedido.getTotal();
+            }
+
+            modelo.addRow(new Object[]{ms.getNumero(), ms.getCapacidad(), ms.isAtendida(), total});
+        }
+
     }
     
     
