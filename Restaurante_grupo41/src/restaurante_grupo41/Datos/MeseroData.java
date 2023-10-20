@@ -216,6 +216,24 @@ public class MeseroData {
 
     public ArrayList <Mesero> ListaMesero (){
      ArrayList <Mesero> listam= new ArrayList <> (); 
+           String sqlLista="select * from mesero";
+        try {
+            PreparedStatement ps=con.prepareStatement(sqlLista);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+                Mesero mesero=new Mesero();
+                mesero.setNombre(rs.getString("nombre"));
+                mesero.setUsuario(rs.getString("usuario"));
+                mesero.setPass(rs.getString("password"));
+                mesero.setAdministrador(rs.getBoolean("administrador"));
+                mesero.setIdMesero(rs.getInt("idmesero"));
+                listam.add(mesero);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
      return listam;
     }
     

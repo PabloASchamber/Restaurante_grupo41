@@ -4,6 +4,7 @@
  */
 package restaurante_grupo41.Vistas;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.MeseroData;
 import restaurante_grupo41.Entidades.Mesero;
@@ -302,8 +303,6 @@ public class VistaMesero extends javax.swing.JInternalFrame {
     
     public void cargarTexto (Mesero m){
        
-        
-        
         Integer id= m.getIdMesero();
         jtIdMesero.setText(id.toString());
         jTNombre.setText(m.getNombre());
@@ -317,7 +316,8 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         jBAsignarAdministrador.setVisible(true);
         jBEliminarAdministrador.setVisible(true);
         jTable1.setVisible(true);
-            
+        cargarDatos();
+        
         }else{
          jbBuscar.setVisible(false);
           jbAgregar.setVisible(false);
@@ -346,20 +346,13 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
        jTable1.repaint();
       
-
-        ArrayList<Mesa> mesas = md.listaMesas();
-        PedidoData pd = new PedidoData();
-        for (Mesa ms : mesas) {
-            Pedido pedido = pd.buscarPedidoMesa(ms.getNumero());
-            double total;
-
-            if (pedido == null) {
-                total = 0;
-            } else {
-                total = pedido.getTotal();
-            }
-
-            modelo.addRow(new Object[]{ms.getNumero(), ms.getCapacidad(), ms.isAtendida(), total});
+       MeseroData md = new MeseroData();
+        ArrayList<Mesero> meseros = md.ListaMesero();
+       
+        
+        for (Mesero mesero: meseros) {
+           
+            modelo.addRow(new Object[]{ mesero.getNombre(),mesero.getUsuario(),mesero.getPass(),mesero.getIdMesero() });
         }
 
     }
