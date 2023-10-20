@@ -228,8 +228,10 @@ public class VistaMesero extends javax.swing.JInternalFrame {
       MeseroData medat=new MeseroData();
        int filas = jTable1.getSelectedRow();
           if (filas != -1){
-         int nro=(int) modelo.getValueAt(filas,0);
+         int id=(int) modelo.getValueAt(filas,3);
         
+         Mesero mesero= medat.buscarMeseroPorId(id);
+         medat.agregarAdministrador(mesero);
           }
     }//GEN-LAST:event_jBAsignarAdministradorActionPerformed
 
@@ -247,7 +249,14 @@ public class VistaMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jBEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarAdministradorActionPerformed
-        // TODO add your handling code here:
+     MeseroData medat=new MeseroData();
+       int filas = jTable1.getSelectedRow();
+          if (filas != -1){
+         int id=(int) modelo.getValueAt(filas,3);
+        
+         Mesero mesero= medat.buscarMeseroPorId(id);
+         medat.eliminarAdministrador(mesero);
+          }
     }//GEN-LAST:event_jBEliminarAdministradorActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed

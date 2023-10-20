@@ -2,6 +2,7 @@
 package restaurante_grupo41.Vistas;
 
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.ProductoData;
 import restaurante_grupo41.Entidades.Producto;
 
@@ -29,19 +30,20 @@ public class VistaPedido extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jtNroMesa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTPedido = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTMenu = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbTipo = new javax.swing.JComboBox<>();
+        jBAgregar = new javax.swing.JButton();
 
         jLabel1.setText("Mesa Nro");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -60,13 +62,13 @@ public class VistaPedido extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTPedido);
 
         jButton1.setText("ordenar");
 
         jLabel2.setText("Menu");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -85,7 +87,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTMenu);
 
         jButton2.setText("quitar");
 
@@ -97,6 +99,19 @@ public class VistaPedido extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setText("pedido");
+
+        jcbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbTipoActionPerformed(evt);
+            }
+        });
+
+        jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpfondoLayout = new javax.swing.GroupLayout(jpfondo);
         jpfondo.setLayout(jpfondoLayout);
@@ -120,7 +135,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
                                     .addComponent(jButton1))
                                 .addGroup(jpfondoLayout.createSequentialGroup()
                                     .addGap(141, 141, 141)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(226, 226, 226)
                                     .addComponent(jLabel1)
                                     .addGap(34, 34, 34)
@@ -128,7 +143,9 @@ public class VistaPedido extends javax.swing.JInternalFrame {
                             .addGap(82, 82, 82)))
                     .addGroup(jpfondoLayout.createSequentialGroup()
                         .addComponent(jButton3)
-                        .addGap(27, 27, 27))))
+                        .addGap(210, 210, 210)
+                        .addComponent(jBAgregar)
+                        .addContainerGap())))
             .addGroup(jpfondoLayout.createSequentialGroup()
                 .addGap(179, 179, 179)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +164,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
                 .addGroup(jpfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jpfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpfondoLayout.createSequentialGroup()
@@ -157,7 +174,9 @@ public class VistaPedido extends javax.swing.JInternalFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton1))
                         .addGap(103, 103, 103)
-                        .addComponent(jButton3))
+                        .addGroup(jpfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(jBAgregar)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -184,28 +203,54 @@ public class VistaPedido extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jcbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoActionPerformed
+       
+    }//GEN-LAST:event_jcbTipoActionPerformed
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
    public void cargarCombo(){
     for (EnumCB opcion : EnumCB.values()) {
-        jComboBox1.addItem(opcion.getLabel());
+        jcbTipo.addItem(opcion.getLabel());
     }
    }
-    
-public void cargarTabla(){
-    
+
+private DefaultTableModel modelo = new DefaultTableModel();
+   
+public void cargarMenu(){
+  modelo.addColumn("nombre");
+  modelo.addColumn("precio");
+  modelo.addColumn("stock");
+  jTMenu.setModel(modelo);
+  
 }
+ private DefaultTableModel modeloped = new DefaultTableModel();
  
+public void cargarPedido (){
+    modeloped.addColumn("nombre");
+    modeloped.addColumn("cantidad");
+    modeloped.addColumn("precio");
+    jTPedido.setModel(modeloped);
+}
+
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTMenu;
+    private javax.swing.JTable jTPedido;
+    private javax.swing.JComboBox<String> jcbTipo;
     private javax.swing.JPanel jpfondo;
     private javax.swing.JTextField jtNroMesa;
     // End of variables declaration//GEN-END:variables

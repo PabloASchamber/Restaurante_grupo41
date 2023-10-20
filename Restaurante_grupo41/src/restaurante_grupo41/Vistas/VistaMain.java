@@ -11,11 +11,14 @@ public class VistaMain extends javax.swing.JFrame {
     
 private CardLayout cardLayout;
 
+  private VistaMesero vistaMesero;
+
+
     public VistaMain() {
         initComponents();
         jPanelOpciones.setVisible(false);
-       
-        
+        vistaMesero = null;
+        m= null;
      
     }
 
@@ -229,11 +232,14 @@ private CardLayout cardLayout;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTUsuarioActionPerformed
 
+   
+  
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
+       
         String usuario=jTUsuario.getText().trim();
         String pass=jPPass.getText().trim();
         Mesero mesero= new Mesero(usuario,pass);
-        MeseroData medat=new MeseroData();
+       MeseroData medat=new MeseroData();
        this.m = medat.ingreso(mesero);
         
         if(m!=null){
@@ -241,7 +247,7 @@ private CardLayout cardLayout;
              login.setVisible(false);
         
          jLNombre.setText(m.getUsuario());
-             
+           
         }
            
     }//GEN-LAST:event_jBIngresarActionPerformed
@@ -252,16 +258,8 @@ private CardLayout cardLayout;
     jLNombre.setText ("");
     jPanelOpciones.setVisible(false);
     login.setVisible(true);
-//   VistaMesa vm = new VistaMesa();
-//     vm.dispose();
-//     VistaMesero vme= new VistaMesero (m);
-//     vme.dispose();
-//     VistaProducto vp=new VistaProducto();
-//     vp.dispose();
-//     VistaListaPedido vlp= new VistaListaPedido ();
-//     vlp.dispose();
-//     VistaPedido vpe= new VistaPedido ();
-//     vpe.dispose();
+    this.m= null;
+     vistaMesero.dispose();
      
     }//GEN-LAST:event_jBSalirActionPerformed
 
@@ -275,10 +273,13 @@ private CardLayout cardLayout;
 
     private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
     
-        VistaMesero vme= new VistaMesero (m);
-        
-        vme.setVisible(true);
-        jDesktopPane.add(vme);
+//        VistaMesero vme= new VistaMesero (m); // CORREGIR REVISAR
+    if (vistaMesero == null) {
+            vistaMesero = new VistaMesero(m);
+            jDesktopPane.add(vistaMesero);
+    }
+          vistaMesero.setVisible(true);
+      
      
     }//GEN-LAST:event_jBMeseroActionPerformed
 
@@ -338,7 +339,7 @@ private CardLayout cardLayout;
     
     private Mesero m= new Mesero ();
     
-   
+  
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
