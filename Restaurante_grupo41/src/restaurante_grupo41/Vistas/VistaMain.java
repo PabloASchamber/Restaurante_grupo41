@@ -14,7 +14,7 @@ private CardLayout cardLayout;
     public VistaMain() {
         initComponents();
         jPanelOpciones.setVisible(false);
-        
+       
         
      
     }
@@ -32,7 +32,6 @@ private CardLayout cardLayout;
         jBMesero = new javax.swing.JButton();
         jBPedido = new javax.swing.JButton();
         jBProducto = new javax.swing.JButton();
-        jBAdministrador = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLNombre = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
@@ -75,13 +74,6 @@ private CardLayout cardLayout;
             }
         });
 
-        jBAdministrador.setText("Administrador");
-        jBAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAdministradorActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Usuario:");
 
         jBSalir.setText("Salir");
@@ -118,8 +110,7 @@ private CardLayout cardLayout;
                             .addComponent(jBMesero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBMesa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBAdministrador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                            .addComponent(jBProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -140,11 +131,9 @@ private CardLayout cardLayout;
                 .addComponent(jbListaPedido)
                 .addGap(18, 18, 18)
                 .addComponent(jBProducto)
-                .addGap(18, 18, 18)
-                .addComponent(jBAdministrador)
-                .addGap(52, 52, 52)
+                .addGap(39, 39, 39)
                 .addComponent(jBSalir)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
 
         jLUsuario.setText("Usuario");
@@ -253,12 +242,6 @@ private CardLayout cardLayout;
         
          jLNombre.setText(m.getUsuario());
              
-         if (m.isAdministrador()){
-             jBAdministrador.setVisible(true);
-             
-         }   else{
-             jBAdministrador.setVisible(false);
-         } 
         }
            
     }//GEN-LAST:event_jBIngresarActionPerformed
@@ -269,8 +252,17 @@ private CardLayout cardLayout;
     jLNombre.setText ("");
     jPanelOpciones.setVisible(false);
     login.setVisible(true);
-        
-        
+//   VistaMesa vm = new VistaMesa();
+//     vm.dispose();
+//     VistaMesero vme= new VistaMesero (m);
+//     vme.dispose();
+//     VistaProducto vp=new VistaProducto();
+//     vp.dispose();
+//     VistaListaPedido vlp= new VistaListaPedido ();
+//     vlp.dispose();
+//     VistaPedido vpe= new VistaPedido ();
+//     vpe.dispose();
+     
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMesaActionPerformed
@@ -284,6 +276,7 @@ private CardLayout cardLayout;
     private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
     
         VistaMesero vme= new VistaMesero (m);
+        
         vme.setVisible(true);
         jDesktopPane.add(vme);
      
@@ -301,12 +294,6 @@ private CardLayout cardLayout;
       jDesktopPane.add(vlp);
         
     }//GEN-LAST:event_jbListaPedidoActionPerformed
-
-    private void jBAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdministradorActionPerformed
-       VistaAdministrador va= new VistaAdministrador();
-       va.setVisible(true);
-        jDesktopPane.add (va);
-    }//GEN-LAST:event_jBAdministradorActionPerformed
 
     private void jBPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidoActionPerformed
         VistaPedido vpe= new VistaPedido ();
@@ -355,7 +342,6 @@ private CardLayout cardLayout;
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAdministrador;
     private javax.swing.JButton jBIngresar;
     private javax.swing.JButton jBMesa;
     private javax.swing.JButton jBMesero;
