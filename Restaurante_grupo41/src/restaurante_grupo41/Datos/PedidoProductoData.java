@@ -23,36 +23,73 @@ public class PedidoProductoData {
     }
      
     
-    public void NuevoPedidoProducto(PedidoProducto pp){
-        String sql="INSERT INTO pedidoproducto (idPedido, idProducto,  cantidad) VALUES (?,?,?)";
-       
-        try {
-             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-             
-             ps.setInt(1, pp.getPedido().getIdpedido());
-             ps.setInt(2,pp.getProducto().getIdProducto());
-             ps.setInt(3, pp.getCantidad());
-             
-             ps.executeUpdate();
-              ResultSet rs = ps.getGeneratedKeys();
-              
-             if(rs.next()){
-                 PedidoData pedat=new PedidoData();
-                 ProductoData prodat=new ProductoData();
-                 Producto producto=prodat.buscarProducto(rs.getInt("idProducto"));
-                 Pedido pedido=pedat.buscarPedido(rs.getInt("idPedido"));
-                 pp.setPedido(pedido);
-                 pp.setProducto(producto);
-                 pp.setCantidad(rs.getInt("cantidad"));
-                 
-                 JOptionPane.showMessageDialog(null, "Pedido producto agregado correctamente");
-                 
-             }
-        } catch (SQLException ex) {
-             Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+//    public void NuevoPedidoProducto(PedidoProducto pp){
+//        String sql= "INSERT INTO pedidoproducto JOIN  Pedido ON pedidoproducto.idPedido= pedido.idPedido JOIN producto ON pedidoproducto.idProducto= producto.idProducto pedido.importe= (pedidoproducto.cantidad* producto.precio)  (idPedido, idProducto,  cantidad) VALUES (?,?,?)";
+//       
+//        try {
+//             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+//             
+//             ps.setInt(1, pp.getPedido().getIdpedido());
+//             ps.setInt(2,pp.getProducto().getIdProducto());
+//             ps.setInt(3, pp.getCantidad());
+//             
+//             ps.executeUpdate();
+//              ResultSet rs = ps.getGeneratedKeys();
+//              
+//             if(rs.next()){
+//                 PedidoData pedat=new PedidoData();
+//                 ProductoData prodat=new ProductoData();
+//                 Producto producto=prodat.buscarProducto(rs.getInt("idProducto"));
+//                 Pedido pedido=pedat.buscarPedido(rs.getInt("idPedido"));
+//                 pp.setPedido(pedido);
+//                 pp.setProducto(producto);
+//                 pp.setCantidad(rs.getInt("cantidad"));
+//                 
+//                 JOptionPane.showMessageDialog(null, "Pedido producto agregado correctamente");
+//                 
+//             }
+//        } catch (SQLException ex) {
+//             Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+//        
+//    }
+    
+    public void NuevoPedidoProducto(PedidoProducto pp) {
+    String sql = "INSERT INTO pedidoproducto (idPedido, idProducto, cantidad) VALUES (?, ?, ?)";
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        ps.setInt(1, pp.getPedido().getIdpedido());
+        ps.setInt(2, pp.getProducto().getIdProducto());
+        ps.setInt(3, pp.getCantidad());
+
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+
+        if (rs.next()) {
+            PedidoData pedat = new PedidoData();
+            ProductoData prodat = new ProductoData();
+            Producto producto = prodat.buscarProducto(rs.getInt("idProducto"));
+            Pedido pedido = pedat.buscarPedido(rs.getInt("idPedido"));
+            pp.setPedido(pedido);
+            pp.setProducto(producto);
+            pp.setCantidad(rs.getInt("cantidad"));
+
+            // Actualiza el importe del pedido
+            String sql2 = "UPDATE pedido SET importe = (SELECT SUM(pp.cantidad * pr.precio) FROM pedidoproducto pp INNER JOIN producto pr ON pp.idProducto = pr.idProducto WHERE pp.idPedido = ?) WHERE idPedido = ?";
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setInt(1, pedido.getIdpedido());
+            ps2.setInt(2, pedido.getIdpedido());
+            ps2.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Pedido producto agregado correctamente");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
+    
     
     public void cambiarPedido(PedidoProducto pp){
         String sql="UPDATE pedidoproducto SET  idProducto=?, cantidad=?  WHERE idPedidoProducto=?";
@@ -93,13 +130,16 @@ public class PedidoProductoData {
          
     }
     
-    public ArrayList<PedidoProducto> listaPedidos(){
+    public ArrayList<PedidoProducto> listaPedidos(int idMesa){
     
         ArrayList<PedidoProducto> listPedido= new ArrayList<>();
-            String sql="SELECT * FROM PedidoProducto ";
+            String sql="SELECT * FROM PedidoProducto JOIN Pedido ON PedidoProducto.idPedido= Pedido.idPedido WHERE Pedido.idMesa= ?";
             PreparedStatement ps;
+            
          try {
+             
              ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+             ps.setInt(1, idMesa);
              ResultSet rs= ps.executeQuery();
              while  (rs.next()){
                  PedidoProducto pp= new PedidoProducto();

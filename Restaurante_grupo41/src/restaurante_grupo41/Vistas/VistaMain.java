@@ -39,6 +39,7 @@ private CardLayout cardLayout;
         jLNombre = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
         jbListaPedido = new javax.swing.JButton();
+        jBFactura = new javax.swing.JButton();
         login = new javax.swing.JPanel();
         jLUsuario = new javax.swing.JLabel();
         jLPass = new javax.swing.JLabel();
@@ -93,6 +94,13 @@ private CardLayout cardLayout;
             }
         });
 
+        jBFactura.setText("Factura");
+        jBFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFacturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelOpcionesLayout = new javax.swing.GroupLayout(jPanelOpciones);
         jPanelOpciones.setLayout(jPanelOpcionesLayout);
         jPanelOpcionesLayout.setHorizontalGroup(
@@ -106,6 +114,7 @@ private CardLayout cardLayout;
             .addGroup(jPanelOpcionesLayout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBFactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbListaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelOpcionesLayout.createSequentialGroup()
                         .addGroup(jPanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -134,9 +143,11 @@ private CardLayout cardLayout;
                 .addComponent(jbListaPedido)
                 .addGap(18, 18, 18)
                 .addComponent(jBProducto)
-                .addGap(39, 39, 39)
+                .addGap(50, 50, 50)
+                .addComponent(jBFactura)
+                .addGap(47, 47, 47)
                 .addComponent(jBSalir)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         jLUsuario.setText("Usuario");
@@ -302,6 +313,12 @@ private CardLayout cardLayout;
          jDesktopPane.add (vpe);
     }//GEN-LAST:event_jBPedidoActionPerformed
 
+    private void jBFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFacturaActionPerformed
+        VistaListaPedido vlp= new VistaListaPedido ();
+        vlp.setVisible(true);
+        jDesktopPane.add(vlp);
+    }//GEN-LAST:event_jBFacturaActionPerformed
+
  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -343,6 +360,7 @@ private CardLayout cardLayout;
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBFactura;
     private javax.swing.JButton jBIngresar;
     private javax.swing.JButton jBMesa;
     private javax.swing.JButton jBMesero;
