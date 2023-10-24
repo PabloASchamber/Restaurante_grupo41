@@ -37,7 +37,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jtListaMesas = new javax.swing.JTable();
         jbVolver = new javax.swing.JButton();
         jlMesas = new javax.swing.JLabel();
-        jBCobrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTfcap = new javax.swing.JTextField();
         jBAsignar = new javax.swing.JButton();
@@ -120,13 +119,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
 
         jlMesas.setText("Mesas");
 
-        jBCobrar.setText("Cobrar");
-        jBCobrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCobrarActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("capacidad");
 
         jBAsignar.setText("Asignar");
@@ -150,11 +142,10 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                     .addComponent(jbAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBCobrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(58, 58, 58)
                 .addGroup(jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                     .addGroup(jpVistaMesaLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(59, 59, 59)
@@ -176,7 +167,8 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                             .addGroup(jpVistaMesaLayout.createSequentialGroup()
                                 .addComponent(jlMesas)
                                 .addGap(68, 68, 68)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64))
                             .addGroup(jpVistaMesaLayout.createSequentialGroup()
                                 .addComponent(jBmLibres)
                                 .addGap(18, 18, 18)
@@ -185,20 +177,18 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                                 .addComponent(jbAtendida)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbLimpiar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBCobrar)
-                                .addGap(18, 18, 18)
+                                .addGap(26, 26, 26)
                                 .addComponent(jbEliminar)
-                                .addGap(21, 21, 21)
-                                .addComponent(jBAsignar)))
-                        .addGap(23, 23, 23)
-                        .addComponent(jbVolver)
-                        .addGap(18, 18, 18)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBAsignar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbVolver)
+                                .addGap(59, 59, 59)))
                         .addComponent(jbAgregar))
                     .addGroup(jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jTfcap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,7 +197,7 @@ public class VistaMesa extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpVistaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 133, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,43 +209,53 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsignarActionPerformed
+        MesaData md = new MesaData();
+        int filas = jtListaMesas.getSelectedRow();
+        if (filas != -1){
+            int nro=(int) modelo.getValueAt(filas,0);
+            md.ocuparMesa(nro);
+        }
+        cargarDatos();
+        jtListaMesas.repaint();
+    }//GEN-LAST:event_jBAsignarActionPerformed
+
     private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
         dispose();
     }//GEN-LAST:event_jbVolverActionPerformed
 
-    private void jBCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCobrarActionPerformed
-         PedidoData pd = new PedidoData();
-        
-         int filas = jtListaMesas.getSelectedRow();
-          if (filas != -1){
-         int nro=(int) modelo.getValueAt(filas,0);
-         Pedido pedido = pd.buscarPedidoMesa(nro);
-          pd.cobrarPedido(pedido.getIdpedido());
-          
-          }
-          cargarDatos(); 
-          jtListaMesas.repaint();
-    }//GEN-LAST:event_jBCobrarActionPerformed
-
-    private void jBmLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmLibresActionPerformed
-        jtListaMesas.getModel();
-        modelo.setRowCount(0);
-        jtListaMesas.repaint();
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         MesaData md = new MesaData();
-        PedidoData pd = new PedidoData();
-        ArrayList<Mesa> mesas = md.listaMesasLibres();
-         double total;
-        for (Mesa ms : mesas) {
-            Pedido pedido = pd.buscarPedidoMesa(ms.getNumero());
-              if (pedido == null) {
-                total = 0;
-            } else {
-                total = pedido.getTotal();
-            }
-
-            modelo.addRow(new Object[]{ms.getNumero(), ms.getCapacidad(), ms.isAtendida(), total});
+        int filas = jtListaMesas.getSelectedRow();
+        if (filas != -1){
+            int nro=(int) modelo.getValueAt(filas,0);
+            md.limpiarMesa(nro);
         }
-    }//GEN-LAST:event_jBmLibresActionPerformed
+        cargarDatos();
+        jtListaMesas.repaint();
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jbAtendidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtendidaActionPerformed
+        MesaData md = new MesaData();
+        int filas = jtListaMesas.getSelectedRow();
+        if (filas != -1){
+            int nro=(int) modelo.getValueAt(filas,0);
+            md.mesaAtendida(nro);
+        }
+        cargarDatos();
+        jtListaMesas.repaint();
+    }//GEN-LAST:event_jbAtendidaActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        MesaData md = new MesaData();
+        int filas = jtListaMesas.getSelectedRow();
+        if (filas != -1){
+            int nro=(int) modelo.getValueAt(filas,0);
+            md.eliminarMesa(nro);
+        }
+        cargarDatos();
+        jtListaMesas.repaint();
+    }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbOcupadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOcupadaActionPerformed
         jtListaMesas.getModel();
@@ -277,58 +277,34 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbOcupadaActionPerformed
 
-    private void jbAtendidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtendidaActionPerformed
-         MesaData md = new MesaData();
-        int filas = jtListaMesas.getSelectedRow();
-          if (filas != -1){
-         int nro=(int) modelo.getValueAt(filas,0);
-        md.mesaAtendida(nro);
-          }
-         cargarDatos(); 
-           jtListaMesas.repaint();
-    }//GEN-LAST:event_jbAtendidaActionPerformed
-
-    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+    private void jBmLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmLibresActionPerformed
+        jtListaMesas.getModel();
+        modelo.setRowCount(0);
+        jtListaMesas.repaint();
         MesaData md = new MesaData();
-        int filas = jtListaMesas.getSelectedRow();
-          if (filas != -1){
-         int nro=(int) modelo.getValueAt(filas,0);
-        md.limpiarMesa(nro);
-          }
-        cargarDatos(); 
-           jtListaMesas.repaint();
-    }//GEN-LAST:event_jbLimpiarActionPerformed
+        PedidoData pd = new PedidoData();
+        ArrayList<Mesa> mesas = md.listaMesasLibres();
+        double total;
+        for (Mesa ms : mesas) {
+            Pedido pedido = pd.buscarPedidoMesa(ms.getNumero());
+            if (pedido == null) {
+                total = 0;
+            } else {
+                total = pedido.getTotal();
+            }
+
+            modelo.addRow(new Object[]{ms.getNumero(), ms.getCapacidad(), ms.isAtendida(), total});
+        }
+    }//GEN-LAST:event_jBmLibresActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-       int cap = Integer.parseInt(jTfcap.getText().trim());
-       MesaData md=new MesaData();
-     Mesa mesa = new Mesa(cap);
-     md.agregarMesas(mesa);
-    cargarDatos(); 
-      jtListaMesas.repaint();
+        int cap = Integer.parseInt(jTfcap.getText().trim());
+        MesaData md=new MesaData();
+        Mesa mesa = new Mesa(cap);
+        md.agregarMesas(mesa);
+        cargarDatos();
+        jtListaMesas.repaint();
     }//GEN-LAST:event_jbAgregarActionPerformed
-
-    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-         MesaData md = new MesaData();
-        int filas = jtListaMesas.getSelectedRow();
-          if (filas != -1){
-         int nro=(int) modelo.getValueAt(filas,0);
-          md.eliminarMesa(nro);
-          }
-          cargarDatos(); 
-           jtListaMesas.repaint();
-    }//GEN-LAST:event_jbEliminarActionPerformed
-
-    private void jBAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsignarActionPerformed
-         MesaData md = new MesaData();
-        int filas = jtListaMesas.getSelectedRow();
-          if (filas != -1){
-         int nro=(int) modelo.getValueAt(filas,0);
-          md.ocuparMesa(nro);
-          }
-           cargarDatos(); 
-           jtListaMesas.repaint();
-    }//GEN-LAST:event_jBAsignarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,7 +376,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAsignar;
-    private javax.swing.JButton jBCobrar;
     private javax.swing.JButton jBmLibres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

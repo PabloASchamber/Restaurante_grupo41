@@ -12,13 +12,14 @@ public class VistaMain extends javax.swing.JFrame {
 private CardLayout cardLayout;
 
   private VistaMesero vistaMesero;
-
+  private VistaPedido vpe;
 
     public VistaMain() {
         initComponents();
         jPanelOpciones.setVisible(false);
         vistaMesero = null;
         m= null;
+        vpe=null;
      
     }
 
@@ -308,9 +309,13 @@ private CardLayout cardLayout;
     }//GEN-LAST:event_jbListaPedidoActionPerformed
 
     private void jBPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidoActionPerformed
-        VistaPedido vpe= new VistaPedido ();
+      if(vpe!=null){
+       vpe= new VistaPedido(m);
+        jDesktopPane.add  (vpe);
+      }
         vpe.setVisible(true);
-         jDesktopPane.add (vpe);
+        
+      
     }//GEN-LAST:event_jBPedidoActionPerformed
 
     private void jBFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFacturaActionPerformed
