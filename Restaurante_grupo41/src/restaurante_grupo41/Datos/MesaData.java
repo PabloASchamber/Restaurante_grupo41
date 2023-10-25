@@ -21,7 +21,7 @@ public class MesaData {
     
     public ArrayList<Mesa> listaMesasLibres(){
          ArrayList<Mesa> mesasLibres = new ArrayList<>();
-         String sqlLista="select * from mesa where estado=1";
+         String sqlLista="select * from mesa where ocupada=0";
         try {
             PreparedStatement ps=con.prepareStatement(sqlLista);
             ResultSet rs =ps.executeQuery();
@@ -29,7 +29,7 @@ public class MesaData {
                 Mesa mesa=new Mesa();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesasLibres.add(mesa);
             }
@@ -44,7 +44,7 @@ public class MesaData {
     
         public ArrayList<Mesa> listaMesasOcupadas(){
          ArrayList<Mesa> mesasOcupadas = new ArrayList<>();
-         String sqlLista="select * from mesa where estado=0";
+         String sqlLista="select * from mesa where ocupada=1";
           try {
             PreparedStatement ps=con.prepareStatement(sqlLista);
             ResultSet rs =ps.executeQuery();
@@ -52,7 +52,7 @@ public class MesaData {
                 Mesa mesa=new Mesa();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesasOcupadas.add(mesa);
             }
@@ -74,7 +74,7 @@ public class MesaData {
                 Mesa mesa=new Mesa();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesasCobro.add(mesa);
             }
@@ -89,7 +89,7 @@ public class MesaData {
         
         
     public void agregarMesas(Mesa mesa){
-        String sqlagregar="INSERT INTO mesa (capacidad, estado, atendida) VALUES (?,1,0)";
+        String sqlagregar="INSERT INTO mesa (capacidad, ocupada, atendida) VALUES (?,0,0)";
         try {
             PreparedStatement ps = con.prepareStatement(sqlagregar, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, mesa.getCapacidad());
@@ -98,7 +98,7 @@ public class MesaData {
              if(rs.next()){
                 mesa.setNumero(rs.getInt(1));
                 mesa.setCapacidad(mesa.getCapacidad());
-                mesa.setEstado(true);
+                mesa.setEstado(false);
                 mesa.setAtendida(false);
               JOptionPane.showMessageDialog(null, "mesa agregada correctamente");
             }
@@ -143,7 +143,7 @@ public class MesaData {
       
             mesa.setNumero(numero);
             mesa.setCapacidad(rs.getInt("capacidad"));
-            mesa.setEstado(rs.getBoolean("estado"));
+            mesa.setEstado(rs.getBoolean("ocupada"));
             mesa.setAtendida(rs.getBoolean("atendida"));
             
             ps.close();
@@ -161,7 +161,7 @@ public class MesaData {
     }
     
     public void mesaAtendida(int numero){
-        String sql="UPDATE mesa SET atendida=1 WHERE numero=?";
+        String sql="UPDATE mesa SET atendida=1 WHERE ocupada= 1 && numero=?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -182,7 +182,7 @@ public class MesaData {
     }
             
     public void limpiarMesa(int numero){
-     String sql="UPDATE mesa SET atendida=0, estado=1 WHERE numero=?";
+     String sql="UPDATE mesa SET atendida=0, ocupada=0 WHERE numero=?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -211,7 +211,7 @@ public class MesaData {
                 Mesa mesa=new Mesa();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesas.add(mesa);
             }
@@ -225,7 +225,7 @@ public class MesaData {
     
     
      public void ocuparMesa(int numero){
-     String sql="UPDATE mesa SET atendida=0, estado=0 WHERE numero=?";
+     String sql="UPDATE mesa SET atendida=0, ocupada=1 WHERE numero=?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);

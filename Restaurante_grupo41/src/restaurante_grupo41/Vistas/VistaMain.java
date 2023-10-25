@@ -306,7 +306,7 @@ public class VistaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jbListaPedidoActionPerformed
 
     private void jBPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidoActionPerformed
-        if (vpe != null) {
+        if (vpe == null) {
             vpe = new VistaPedido(m);
             jDesktopPane.add(vpe);
         }

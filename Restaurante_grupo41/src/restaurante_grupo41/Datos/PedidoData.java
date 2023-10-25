@@ -35,7 +35,7 @@ public class PedidoData {
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesero.setIdMesero(rs.getInt("idMesero"));
                 mesero.setNombre(rs.getString("nombre"));
@@ -184,7 +184,7 @@ public class PedidoData {
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesero.setIdMesero(rs.getInt("idMesero"));
                 mesero.setNombre(rs.getString("nombre"));
@@ -222,7 +222,7 @@ public class PedidoData {
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesero.setIdMesero(rs.getInt("idMesero"));
                 mesero.setNombre(rs.getString("nombre"));
@@ -262,7 +262,7 @@ public class PedidoData {
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesero.setIdMesero(rs.getInt("idMesero"));
                 mesero.setNombre(rs.getString("nombre"));
@@ -300,7 +300,7 @@ public class PedidoData {
                 Mesero mesero = new Mesero();
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
-                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
                 mesero.setIdMesero(rs.getInt("idMesero"));
                 mesero.setNombre(rs.getString("nombre"));

@@ -4,6 +4,7 @@ package restaurante_grupo41.Vistas;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.MesaData;
 import restaurante_grupo41.Datos.PedidoData;
@@ -293,17 +294,33 @@ public void cargarPedido (){
     modeloped.addColumn("precio");
     jTPedido.setModel(modeloped);
 }
+private  Pedido pedido = null;
 
 public void cargarTablaPedido(Producto producto){
   
     if (jCBMesa.getSelectedItem() != null) {
-
-//        Mesero mesero;
         Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
         PedidoData pdata = new PedidoData();
-        Pedido pedido = new Pedido();
-        ArrayList<PedidoProducto> ListaPedido = new ArrayList<>();
+//       this.pedido = null;
+        
+        if (pedido !=null){
+        pedido= pdata.buscarPedidoMesa(mesa.getNumero());
+        ArrayList<PedidoProducto> ListaPedido = new ArrayList<>();   
+        PedidoProductoData ppdata = new PedidoProductoData();
+        PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
+        ppdata.NuevoPedidoProducto(pp);
+        ListaPedido.add(pp);
+        
+        for (PedidoProducto p : ListaPedido) {
+            modeloped.addRow(new Object[]{pp.getProducto().getNombre(), pp.getCantidad(), pp.getProducto().getPrecio()});
+        } 
+         
+        } else{
+     
+      
+        ArrayList<PedidoProducto> ListaPedido = new ArrayList<>(); 
         LocalDate fecha=LocalDate.now();
+        pedido= new Pedido();
         pedido.setMesero(this.m);
         pedido.setMesa(mesa);
         pedido.setTotal(0);
@@ -316,8 +333,13 @@ public void cargarTablaPedido(Producto producto){
 
         for (PedidoProducto p : ListaPedido) {
             modeloped.addRow(new Object[]{pp.getProducto().getNombre(), pp.getCantidad(), pp.getProducto().getPrecio()});
-
+        }   
         }
+    } else{
+        
+       JOptionPane.showMessageDialog(null, "Seleccione una mesa");
+        
+        
     }
 
 }
