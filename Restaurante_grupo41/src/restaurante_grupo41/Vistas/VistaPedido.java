@@ -1,6 +1,7 @@
 
 package restaurante_grupo41.Vistas;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
@@ -17,17 +18,15 @@ import restaurante_grupo41.Entidades.Producto;
 
 public class VistaPedido extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VistaPedido
-     */
+private Mesero m=null;
     public VistaPedido(Mesero mesero) {
         initComponents();
         cargarCombo();
         cargarMenu();
         cargarPedido();
         cargarComboMesa();
-        Pedido pedido=new Pedido();
-      
+//        Pedido pedido=new Pedido();
+        m=mesero;
         
     }
 
@@ -299,14 +298,19 @@ public void cargarTablaPedido(Producto producto){
   
     if (jCBMesa.getSelectedItem() != null) {
 
-        Mesero mesero;
+//        Mesero mesero;
         Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
         PedidoData pdata = new PedidoData();
         Pedido pedido = new Pedido();
         ArrayList<PedidoProducto> ListaPedido = new ArrayList<>();
+        LocalDate fecha=LocalDate.now();
+        pedido.setMesero(this.m);
+        pedido.setMesa(mesa);
+        pedido.setTotal(0);
+        pedido.setFechaHora(fecha);
+        pdata.agregarPedido(pedido);
         PedidoProductoData ppdata = new PedidoProductoData();
         PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
-
         ppdata.NuevoPedidoProducto(pp);
         ListaPedido.add(pp);
 

@@ -1,4 +1,3 @@
-
 package restaurante_grupo41.Vistas;
 
 import java.awt.CardLayout;
@@ -6,21 +5,20 @@ import javax.swing.JPanel;
 import restaurante_grupo41.Datos.MeseroData;
 import restaurante_grupo41.Entidades.Mesero;
 
-
 public class VistaMain extends javax.swing.JFrame {
-    
-private CardLayout cardLayout;
 
-  private VistaMesero vistaMesero;
-  private VistaPedido vpe;
+    private CardLayout cardLayout;
+
+    private VistaMesero vistaMesero;
+    private VistaPedido vpe;
 
     public VistaMain() {
         initComponents();
         jPanelOpciones.setVisible(false);
         vistaMesero = null;
-        m= null;
-        vpe=null;
-     
+        m = null;
+        vpe = null;
+
     }
 
     /**
@@ -244,87 +242,85 @@ private CardLayout cardLayout;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTUsuarioActionPerformed
 
-   
-  
+
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
-       
-        String usuario=jTUsuario.getText().trim();
-        String pass=jPPass.getText().trim();
-        Mesero mesero= new Mesero(usuario,pass);
-       MeseroData medat=new MeseroData();
-       this.m = medat.ingreso(mesero);
-        
-        if(m!=null){
-             jPanelOpciones.setVisible(true);
-             login.setVisible(false);
-        
-         jLNombre.setText(m.getUsuario());
-           
+
+        String usuario = jTUsuario.getText().trim();
+        String pass = jPPass.getText().trim();
+        Mesero mesero = new Mesero(usuario, pass);
+        MeseroData medat = new MeseroData();
+        this.m = medat.ingreso(mesero);
+
+        if (m != null) {
+            jPanelOpciones.setVisible(true);
+            login.setVisible(false);
+
+            jLNombre.setText(m.getUsuario());
+
         }
-           
+
     }//GEN-LAST:event_jBIngresarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-   jTUsuario.setText("");
-   jPPass.setText("");
-    jLNombre.setText ("");
-    jPanelOpciones.setVisible(false);
-    login.setVisible(true);
-    this.m= null;
-     vistaMesero.dispose();
-     
+        jTUsuario.setText("");
+        jPPass.setText("");
+        jLNombre.setText("");
+        jPanelOpciones.setVisible(false);
+        login.setVisible(true);
+        this.m = null;
+        vistaMesero.dispose();
+
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMesaActionPerformed
-     
+
         VistaMesa vm = new VistaMesa();
         vm.setVisible(true);
         jDesktopPane.add(vm);
-       
+
     }//GEN-LAST:event_jBMesaActionPerformed
 
     private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
-    
+
 //        VistaMesero vme= new VistaMesero (m); // CORREGIR REVISAR
-    if (vistaMesero == null) {
+        if (vistaMesero == null) {
             vistaMesero = new VistaMesero(m);
             jDesktopPane.add(vistaMesero);
-    }
-          vistaMesero.setVisible(true);
-      
-     
+        }
+        vistaMesero.setVisible(true);
+
+
     }//GEN-LAST:event_jBMeseroActionPerformed
 
     private void jBProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProductoActionPerformed
-        VistaProducto vp=new VistaProducto();
+        VistaProducto vp = new VistaProducto();
         vp.setVisible(true);
-         jDesktopPane.add(vp);
+        jDesktopPane.add(vp);
     }//GEN-LAST:event_jBProductoActionPerformed
 
     private void jbListaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListaPedidoActionPerformed
-      VistaListaPedido vlp= new VistaListaPedido ();
-      vlp.setVisible(true);
-      jDesktopPane.add(vlp);
-        
+        VistaListaPedido vlp = new VistaListaPedido();
+        vlp.setVisible(true);
+        jDesktopPane.add(vlp);
+
     }//GEN-LAST:event_jbListaPedidoActionPerformed
 
     private void jBPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidoActionPerformed
-      if(vpe!=null){
-       vpe= new VistaPedido(m);
-        jDesktopPane.add  (vpe);
-      }
+        if (vpe != null) {
+            vpe = new VistaPedido(m);
+            jDesktopPane.add(vpe);
+        }
         vpe.setVisible(true);
-        
-      
+
+
     }//GEN-LAST:event_jBPedidoActionPerformed
 
     private void jBFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFacturaActionPerformed
-        VistaListaPedido vlp= new VistaListaPedido ();
+        VistaListaPedido vlp = new VistaListaPedido();
         vlp.setVisible(true);
         jDesktopPane.add(vlp);
     }//GEN-LAST:event_jBFacturaActionPerformed
 
- 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -357,13 +353,9 @@ private CardLayout cardLayout;
         });
     }
 
-    
-    
-    private Mesero m= new Mesero ();
-    
-  
-    
-    
+    private Mesero m = new Mesero();
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBFactura;
     private javax.swing.JButton jBIngresar;
