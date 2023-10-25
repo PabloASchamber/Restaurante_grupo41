@@ -301,7 +301,7 @@ public void cargarTablaPedido(Producto producto){
     if (jCBMesa.getSelectedItem() != null) {
         Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
         PedidoData pdata = new PedidoData();
-//       this.pedido = null;
+
         
         if (pedido !=null){
         pedido= pdata.buscarPedidoMesa(mesa.getNumero());
@@ -309,6 +309,7 @@ public void cargarTablaPedido(Producto producto){
         PedidoProductoData ppdata = new PedidoProductoData();
         PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
         ppdata.NuevoPedidoProducto(pp);
+        pdata.actualizarTotal(pedido);
         ListaPedido.add(pp);
         
         for (PedidoProducto p : ListaPedido) {
@@ -317,7 +318,7 @@ public void cargarTablaPedido(Producto producto){
          
         } else{
      
-      
+//       mesa = (Mesa) jCBMesa.getSelectedItem();
         ArrayList<PedidoProducto> ListaPedido = new ArrayList<>(); 
         LocalDate fecha=LocalDate.now();
         pedido= new Pedido();
@@ -326,9 +327,12 @@ public void cargarTablaPedido(Producto producto){
         pedido.setTotal(0);
         pedido.setFechaHora(fecha);
         pdata.agregarPedido(pedido);
+        pedido.setIdpedido(pdata.buscarPedidoMesa(mesa.getNumero()).getIdpedido());
+        pdata.buscarPedidoMesa(mesa.getNumero());
         PedidoProductoData ppdata = new PedidoProductoData();
         PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
         ppdata.NuevoPedidoProducto(pp);
+        pdata.actualizarTotal(pedido);
         ListaPedido.add(pp);
 
         for (PedidoProducto p : ListaPedido) {

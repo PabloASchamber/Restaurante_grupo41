@@ -76,12 +76,12 @@ public class PedidoProductoData {
             pp.setProducto(producto);
             pp.setCantidad(rs.getInt("cantidad"));
 
-            // Actualiza el importe del pedido
-            String sql2 = "UPDATE pedido SET importe = (SELECT SUM(pp.cantidad * pr.precio) FROM pedidoproducto pp INNER JOIN producto pr ON pp.idProducto = pr.idProducto WHERE pp.idPedido = ?) WHERE idPedido = ?";
-            PreparedStatement ps2 = con.prepareStatement(sql2);
-            ps2.setInt(1, pedido.getIdpedido());
-            ps2.setInt(2, pedido.getIdpedido());
-            ps2.executeUpdate();
+//            // Actualiza el importe del pedido
+//            String sql2 = "UPDATE pedido SET importe = (SELECT SUM(pedidoproducto.cantidad * pr.precio) FROM pedidoproducto pp INNER JOIN producto pr ON pp.idProducto = pr.idProducto WHERE pp.idPedido = ?) WHERE idPedido = ?";
+//            PreparedStatement ps2 = con.prepareStatement(sql2);
+//            ps2.setInt(1, pedido.getIdpedido());
+//            ps2.setInt(2, pedido.getIdpedido());
+//            ps2.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Pedido producto agregado correctamente");
         }

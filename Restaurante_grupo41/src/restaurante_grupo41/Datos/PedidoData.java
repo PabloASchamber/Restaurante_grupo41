@@ -320,6 +320,36 @@ public class PedidoData {
         return null;
 
     }
+     public void actualizarTotal (Pedido pedido){
+         
+             
+      String sql= "UPDATE pedido SET importe=? WHERE idPedido=?";
+        
+      
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           
+           
+            ps.setDouble(1, pedido.getTotal());
+            ps.setInt(2, pedido.getIdpedido());
+            int exito= ps.executeUpdate();
+            
+            if (exito==1){
+                
+                System.out.println("Total modificado correctamente");
+           
+              
+            }else{
+                
+                JOptionPane.showMessageDialog(null, "No se pudo modificar el total");
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
+         
+     }
     
 }// fin
