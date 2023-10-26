@@ -260,7 +260,7 @@ private Mesero m=null;
         
         int filas = jTPedido.getSelectedRow();
         if (filas!=-1){
-                modelo.removeRow(filas);
+                modeloped.removeRow(filas);
                 jTPedido.repaint();
         }
       
@@ -331,7 +331,11 @@ public void cargarTablaPedido(Producto producto){
         for (PedidoProducto p : ListaPedido) {
             modeloped.addRow(new Object[]{p.getProducto().getNombre(), p.getCantidad(), p.getProducto().getPrecio()});
         } 
+        
+        
          sumarProductos();
+        
+         
          jTPedido.repaint();
         } else{
                 System.out.println("if =null");
@@ -402,11 +406,14 @@ public void cargarComboMesa(){
 }
 
 public void sumarProductos(){
+    
+    
     for (int i = 0; i<ListaPedido.size(); i++){
         String tablaPed = (String) jTPedido.getValueAt(i, 0);
         for (PedidoProducto pd : ListaPedido) {
        boolean igual = pd.getProducto().getNombre().equals(tablaPed);
-       if(igual){
+      
+       if(igual && ListaPedido.size()>1){
            Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
         jTPedido.setValueAt(cantidad, i, 1);
         ListaPedido.remove(pd);
