@@ -331,6 +331,7 @@ public void cargarTablaPedido(Producto producto){
         for (PedidoProducto p : ListaPedido) {
             modeloped.addRow(new Object[]{p.getProducto().getNombre(), p.getCantidad(), p.getProducto().getPrecio()});
         } 
+         sumarProductos();
          jTPedido.repaint();
         } else{
                 System.out.println("if =null");
@@ -351,12 +352,20 @@ public void cargarTablaPedido(Producto producto){
         
         ListaPedido.add(pp);
 
-            
+                
+        
+        
         for (PedidoProducto pd : ListaPedido) {
             modeloped.addRow(new Object[]{pd.getProducto().getNombre(), pd.getCantidad(), pd.getProducto().getPrecio()});
         } 
         jTPedido.repaint();
         }
+        
+        /////Prueba de cambiar cantidad
+        
+        sumarProductos();
+        
+        
     } else{
        JOptionPane.showMessageDialog(null, "Seleccione una mesa");
     }
@@ -391,6 +400,34 @@ public void cargarComboMesa(){
              jCBMesa.addItem(mesa);
         }
 }
+
+public void sumarProductos(){
+    for (int i = 0; i<ListaPedido.size(); i++){
+        String tablaPed = (String) jTPedido.getValueAt(i, 0);
+        for (PedidoProducto pd : ListaPedido) {
+       boolean igual = pd.getProducto().getNombre().equals(tablaPed);
+       if(igual){
+           Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
+        jTPedido.setValueAt(cantidad, i, 1);
+        ListaPedido.remove(pd);
+       }
+        } 
+    }
+    //lista de tabla2
+   /* for (int i = 0; i<jTPedido.getColumnCount();i++){
+    String tablape = (String) jTPedido.getValueAt(i, 0);
+    
+    if(nombre.equals(nombre)){
+        
+        Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
+        jTPedido.setValueAt(cantidad, i, 1);
+    }
+    }
+    */
+
+}
+
+
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
