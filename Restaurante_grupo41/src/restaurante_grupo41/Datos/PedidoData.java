@@ -57,32 +57,29 @@ public class PedidoData {
     }
 
     public void agregarPedido(Pedido pedido) {
+    String sql = "INSERT INTO pedido(idMesa, mesero, fechaHora, importe, cobrada) VALUES (?,?,?,?,?)";
 
-        String sql = "INSERT INTO pedido( idMesa, mesero, fechaHora, importe, cobrada) VALUES (?,?,?,?,?)";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, pedido.getMesa().getNumero());
+        ps.setInt(2, pedido.getMesero().getIdMesero());
+        ps.setDate(3, Date.valueOf(pedido.getFechaHora()));
+        ps.setDouble(4, pedido.getTotal());
+        ps.setBoolean(5, pedido.isCobrada());
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, pedido.getMesa().getNumero());
-            ps.setInt(2, pedido.getMesero().getIdMesero());
-            ps.setDate(3, Date.valueOf(pedido.getFechaHora()));
-            ps.setDouble(4, pedido.getTotal());
-            ps.setBoolean(5, pedido.isCobrada());
+        ps.executeUpdate();
 
-            ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
 
-            ResultSet rs = ps.getGeneratedKeys();
-
-            if (rs.next()) {
-
-                JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
+        if (rs.next()) {
+            pedido.setIdpedido(rs.getInt(1)); 
+            JOptionPane.showMessageDialog(null, "Pedido agregado correctamente");
         }
 
+    } catch (SQLException ex) {
+        Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
 
     public void cancelarPedido (int id){
@@ -288,8 +285,12 @@ public class PedidoData {
     }
           
             public Pedido buscarPedidoMesa(int nro) {
-        String sql = "SELECT * FROM pedido JOIN pedidoproducto ON pedidoproducto.idPedido = pedido.idPedido JOIN mesero ON pedido.mesero = mesero.idmesero JOIN mesa ON pedido.idmesa = mesa.numero WHERE pedido.idmesa=?";
-
+        String sql = "SELECT * FROM pedido " +
+                 "JOIN mesa ON pedido.idMesa = mesa.numero " +
+                 "JOIN mesero ON pedido.mesero = mesero.idMesero " +
+                 "WHERE pedido.idMesa = ?";
+        
+        Pedido pedido = new Pedido();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, nro);
@@ -302,11 +303,13 @@ public class PedidoData {
                 mesa.setCapacidad(rs.getInt("capacidad"));
                 mesa.setEstado(rs.getBoolean("ocupada"));
                 mesa.setAtendida(rs.getBoolean("atendida"));
+                
                 mesero.setIdMesero(rs.getInt("idMesero"));
                 mesero.setNombre(rs.getString("nombre"));
-                Pedido pedido = new Pedido();
+                
                 pedido.setMesa(mesa);
                 pedido.setIdpedido(rs.getInt("idpedido"));
+                System.out.println("idpedido sql " +pedido.getIdpedido());
                 pedido.setFechaHora(rs.getDate("fechahora").toLocalDate());
                 pedido.setCobrada(rs.getBoolean("cobrada"));
                 pedido.setMesero(mesero);
@@ -317,33 +320,28 @@ public class PedidoData {
         } catch (SQLException ex) {
             Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return pedido;
+
 
     }
+            
+            
      public void actualizarTotal (Pedido pedido){
          
-             
       String sql= "UPDATE pedido SET importe=? WHERE idPedido=?";
-        
       
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           
-           
+          
             ps.setDouble(1, pedido.getTotal());
             ps.setInt(2, pedido.getIdpedido());
             int exito= ps.executeUpdate();
             
             if (exito==1){
-                
-                System.out.println("Total modificado correctamente");
-           
-              
+                System.out.println("Total modificado correctamente");            
             }else{
-                
                 JOptionPane.showMessageDialog(null, "No se pudo modificar el total");
             }
-            
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(PedidoData.class.getName()).log(Level.SEVERE, null, ex);

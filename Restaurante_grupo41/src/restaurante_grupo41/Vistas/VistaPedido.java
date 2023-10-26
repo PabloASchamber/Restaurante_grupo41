@@ -75,6 +75,11 @@ private Mesero m=null;
         jScrollPane1.setViewportView(jTPedido);
 
         jBOrdenar.setText("ordenar");
+        jBOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOrdenarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Menu");
 
@@ -148,7 +153,6 @@ private Mesero m=null;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBOrdenar))
                             .addGroup(jpfondoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -266,10 +270,21 @@ private Mesero m=null;
   
         if ( jCBMesa.getSelectedItem()!=null){
             Mesa mesa = (Mesa ) jCBMesa.getSelectedItem();
-           
+            jTPedido.repaint();
         }
  
     }//GEN-LAST:event_jCBMesaActionPerformed
+
+    private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
+        PedidoProductoData ppdata = new PedidoProductoData();
+      
+        
+     for (PedidoProducto p : ListaPedido) {
+        ppdata.NuevoPedidoProducto(p);
+        
+        } 
+
+    }//GEN-LAST:event_jBOrdenarActionPerformed
 
    public void cargarCombo(){
     for (EnumCB opcion : EnumCB.values()) {
@@ -294,56 +309,56 @@ public void cargarPedido (){
     modeloped.addColumn("precio");
     jTPedido.setModel(modeloped);
 }
-private  Pedido pedido = null;
+private  Pedido pedido;
+private ArrayList<PedidoProducto> ListaPedido = new ArrayList<>(); 
 
 public void cargarTablaPedido(Producto producto){
-  
+    System.out.println("ingreso a tabla pedido");
     if (jCBMesa.getSelectedItem() != null) {
         Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
         PedidoData pdata = new PedidoData();
-
         
         if (pedido !=null){
+            System.out.println("if !=null");
         pedido= pdata.buscarPedidoMesa(mesa.getNumero());
-        ArrayList<PedidoProducto> ListaPedido = new ArrayList<>();   
-        PedidoProductoData ppdata = new PedidoProductoData();
-        PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
-        ppdata.NuevoPedidoProducto(pp);
+        double total=(producto.getPrecio()*1);
+        pedido.setTotal(total);
         pdata.actualizarTotal(pedido);
+        PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
         ListaPedido.add(pp);
+        System.out.println("idpedido"+pedido.getIdpedido());
         
         for (PedidoProducto p : ListaPedido) {
-            modeloped.addRow(new Object[]{pp.getProducto().getNombre(), pp.getCantidad(), pp.getProducto().getPrecio()});
+            modeloped.addRow(new Object[]{p.getProducto().getNombre(), p.getCantidad(), p.getProducto().getPrecio()});
         } 
-         
+         jTPedido.repaint();
         } else{
-     
-//       mesa = (Mesa) jCBMesa.getSelectedItem();
-        ArrayList<PedidoProducto> ListaPedido = new ArrayList<>(); 
+                System.out.println("if =null");
         LocalDate fecha=LocalDate.now();
         pedido= new Pedido();
         pedido.setMesero(this.m);
         pedido.setMesa(mesa);
         pedido.setTotal(0);
         pedido.setFechaHora(fecha);
+            System.out.println("pedido sin id "+pedido);
         pdata.agregarPedido(pedido);
-        pedido.setIdpedido(pdata.buscarPedidoMesa(mesa.getNumero()).getIdpedido());
-        pdata.buscarPedidoMesa(mesa.getNumero());
-        PedidoProductoData ppdata = new PedidoProductoData();
+         System.out.println("pedido con id "+pedido);
+
+
+        double total=(producto.getPrecio()*1);
+        pedido.setTotal(total);
         PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
-        ppdata.NuevoPedidoProducto(pp);
-        pdata.actualizarTotal(pedido);
+        
         ListaPedido.add(pp);
 
-        for (PedidoProducto p : ListaPedido) {
-            modeloped.addRow(new Object[]{pp.getProducto().getNombre(), pp.getCantidad(), pp.getProducto().getPrecio()});
-        }   
+            
+        for (PedidoProducto pd : ListaPedido) {
+            modeloped.addRow(new Object[]{pd.getProducto().getNombre(), pd.getCantidad(), pd.getProducto().getPrecio()});
+        } 
+        jTPedido.repaint();
         }
     } else{
-        
        JOptionPane.showMessageDialog(null, "Seleccione una mesa");
-        
-        
     }
 
 }
