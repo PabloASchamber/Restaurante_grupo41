@@ -274,7 +274,8 @@ private Mesero m=null;
             Mesa mesa = (Mesa ) jCBMesa.getSelectedItem();
             jTPedido.repaint();
         }
- 
+//        modeloped.setRowCount(0);
+//          jTPedido.repaint();
     }//GEN-LAST:event_jCBMesaActionPerformed
 
     private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
@@ -313,9 +314,12 @@ public void cargarPedido (){
 }
 private  Pedido pedido;
 private ArrayList<PedidoProducto> ListaPedido = new ArrayList<>(); 
+private  int cantidad=1;
 
 public void cargarTablaPedido(Producto producto){
     System.out.println("ingreso a tabla pedido");
+   
+    
     if (jCBMesa.getSelectedItem() != null) {
         Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
         PedidoData pdata = new PedidoData();
@@ -326,18 +330,14 @@ public void cargarTablaPedido(Producto producto){
         double total=(producto.getPrecio()*1);
         pedido.setTotal(total);
         pdata.actualizarTotal(pedido);
-        PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
+        sumarProductos();
+        
+        PedidoProducto pp = new PedidoProducto(pedido, producto, cantidad);
         ListaPedido.add(pp);
         System.out.println("idpedido"+pedido.getIdpedido());
         
-        for (PedidoProducto p : ListaPedido) {
-            modeloped.addRow(new Object[]{p.getProducto().getNombre(), p.getCantidad(), p.getProducto().getPrecio()});
-        } 
-        
-        
-         sumarProductos();
-        
-         
+       
+          
          jTPedido.repaint();
         } else{
                 System.out.println("if =null");
@@ -351,25 +351,19 @@ public void cargarTablaPedido(Producto producto){
         pdata.agregarPedido(pedido);
          System.out.println("pedido con id "+pedido);
 
-
         double total=(producto.getPrecio()*1);
         pedido.setTotal(total);
         PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
         
         ListaPedido.add(pp);
 
-                
-        
-        
-        for (PedidoProducto pd : ListaPedido) {
-            modeloped.addRow(new Object[]{pd.getProducto().getNombre(), pd.getCantidad(), pd.getProducto().getPrecio()});
-        } 
         jTPedido.repaint();
         }
         
-        /////Prueba de cambiar cantidad
-        
-        sumarProductos();
+       for (PedidoProducto pd : ListaPedido) {
+            modeloped.addRow(new Object[]{pd.getProducto().getNombre(), pd.getCantidad(), pd.getProducto().getPrecio()});
+        } 
+//        sumarProductos();
         
         
     } else{
@@ -409,34 +403,46 @@ public void cargarComboMesa(){
 
 public void sumarProductos(){
     
-    
-//    for (int i = 0; i<ListaPedido.size(); i++){
-//        String tablaPed = (String) jTPedido.getValueAt(i, 0);
-//        for (PedidoProducto pd : ListaPedido) {
-//       boolean igual = pd.getProducto().getNombre().equals(tablaPed);
-//      
-//       if(igual && ListaPedido.size()>1){
-//           Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
+//    
+//    for (int i = 0; i < ListaPedido.size(); i++) {
+//    PedidoProducto pd = ListaPedido.get(i);
+//    String tablaPed = (String) jTPedido.getValueAt(i, 0);
+//    
+//    if (pd.getProducto().getNombre().equals(tablaPed)) {
+//        Integer cantidad = (Integer) jTPedido.getValueAt(i, 1) + 1;
 //        jTPedido.setValueAt(cantidad, i, 1);
-//        ListaPedido.remove(pd);
-//       }
-//        } 
+//        return;
 //    }
-
-    ArrayList<PedidoProducto> copyListaPedido = new ArrayList<>(ListaPedido);
-
-    for (int i = 0; i < copyListaPedido.size(); i++) {
-        PedidoProducto pd = copyListaPedido.get(i);
+//}
+//    
+    
+    for (int i = 0; i<ListaPedido.size(); i++){
         String tablaPed = (String) jTPedido.getValueAt(i, 0);
-        boolean igual = pd.getProducto().getNombre().equals(tablaPed);
-
-        if (igual && jTPedido.getRowCount() > 1) {
-            Integer cantidad = (Integer) jTPedido.getValueAt(i, 1) + 1;
-            jTPedido.setValueAt(cantidad, i, 1);
-            ListaPedido.remove(pd); 
-            jTPedido.repaint();
-        }
+        for (PedidoProducto pd : ListaPedido) {
+       boolean igual = pd.getProducto().getNombre().equals(tablaPed);
+      
+       if(igual && ListaPedido.size()>1){
+           cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
+        jTPedido.setValueAt(cantidad, i, 1);
+        ListaPedido.remove(pd);
+       }
+        } 
     }
+
+//    ArrayList<PedidoProducto> copyListaPedido = new ArrayList<>(ListaPedido);
+//
+//    for (int i = 0; i < copyListaPedido.size(); i++) {
+//        PedidoProducto pd = copyListaPedido.get(i);
+//        String tablaPed = (String) jTPedido.getValueAt(i, 0);
+//        boolean igual = pd.getProducto().getNombre().equals(tablaPed);
+//
+//        if (igual && jTPedido.getRowCount() > 1) {
+//            Integer cantidad = (Integer) jTPedido.getValueAt(i, 1) + 1;
+//            jTPedido.setValueAt(cantidad, i, 1);
+//            ListaPedido.remove(pd); 
+//            jTPedido.repaint();
+//        }
+//    }
 
 
 }
