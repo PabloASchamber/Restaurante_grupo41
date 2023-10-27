@@ -3,6 +3,7 @@ package restaurante_grupo41.Vistas;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -248,8 +249,9 @@ private Mesero m=null;
         
         int filas = jTMenu.getSelectedRow();
         if (filas!=-1){
-                int id =(int) modelo.getValueAt(filas, 2);
+                Integer id = Integer.valueOf(modelo.getValueAt(filas, 2).toString().trim());
                 Producto producto = prodat.buscarProducto(id);
+                System.out.println("producto "+producto);
                 cargarTablaPedido(producto);
                 jTPedido.repaint();
         }
@@ -408,29 +410,34 @@ public void cargarComboMesa(){
 public void sumarProductos(){
     
     
-    for (int i = 0; i<ListaPedido.size(); i++){
+//    for (int i = 0; i<ListaPedido.size(); i++){
+//        String tablaPed = (String) jTPedido.getValueAt(i, 0);
+//        for (PedidoProducto pd : ListaPedido) {
+//       boolean igual = pd.getProducto().getNombre().equals(tablaPed);
+//      
+//       if(igual && ListaPedido.size()>1){
+//           Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
+//        jTPedido.setValueAt(cantidad, i, 1);
+//        ListaPedido.remove(pd);
+//       }
+//        } 
+//    }
+
+    ArrayList<PedidoProducto> copyListaPedido = new ArrayList<>(ListaPedido);
+
+    for (int i = 0; i < copyListaPedido.size(); i++) {
+        PedidoProducto pd = copyListaPedido.get(i);
         String tablaPed = (String) jTPedido.getValueAt(i, 0);
-        for (PedidoProducto pd : ListaPedido) {
-       boolean igual = pd.getProducto().getNombre().equals(tablaPed);
-      
-       if(igual && ListaPedido.size()>1){
-           Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
-        jTPedido.setValueAt(cantidad, i, 1);
-        ListaPedido.remove(pd);
-       }
-        } 
+        boolean igual = pd.getProducto().getNombre().equals(tablaPed);
+
+        if (igual && jTPedido.getRowCount() > 1) {
+            Integer cantidad = (Integer) jTPedido.getValueAt(i, 1) + 1;
+            jTPedido.setValueAt(cantidad, i, 1);
+            ListaPedido.remove(pd); 
+            jTPedido.repaint();
+        }
     }
-    //lista de tabla2
-   /* for (int i = 0; i<jTPedido.getColumnCount();i++){
-    String tablape = (String) jTPedido.getValueAt(i, 0);
-    
-    if(nombre.equals(nombre)){
-        
-        Integer cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
-        jTPedido.setValueAt(cantidad, i, 1);
-    }
-    }
-    */
+
 
 }
 
