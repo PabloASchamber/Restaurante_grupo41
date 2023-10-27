@@ -69,14 +69,14 @@ public void NuevoPedidoProducto(PedidoProducto pp) {
         ResultSet rs = ps.getGeneratedKeys();
 
         if (rs.next()) {
-            PedidoData pedat = new PedidoData();
-            ProductoData prodat = new ProductoData();
-            Producto producto = prodat.buscarProducto(rs.getInt("insert_id"));
-            Pedido pedido = pedat.buscarPedido(rs.getInt("insert_id"));
-            pp.setPedido(pedido);
-            pp.setProducto(producto);
-            pp.setCantidad(rs.getInt("cantidad"));
-            pp.setPedidoProducto(rs.getInt("idpedidoproducto"));
+//            PedidoData pedat = new PedidoData();
+//            ProductoData prodat = new ProductoData();
+//            Producto producto = prodat.buscarProducto(rs.getInt("insert_id"));
+//            Pedido pedido = pedat.buscarPedido(rs.getInt("insert_id"));
+//            pp.setPedido(pedido);
+//            pp.setProducto(producto);
+//            pp.setCantidad(rs.getInt("insert_id"));
+            pp.setPedidoProducto(rs.getInt("insert_id"));
             JOptionPane.showMessageDialog(null, "Pedido producto agregado correctamente");
         }
     } catch (SQLException ex) {

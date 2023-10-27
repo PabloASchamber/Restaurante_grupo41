@@ -252,8 +252,22 @@ private Mesero m=null;
                 Integer id = Integer.valueOf(modelo.getValueAt(filas, 2).toString().trim());
                 Producto producto = prodat.buscarProducto(id);
                 System.out.println("producto "+producto);
-                cargarTablaPedido(producto);
-                jTPedido.repaint();
+             int i= 0;
+        for (PedidoProducto pd : ListaPedido) {
+           
+       String tablaPed = (String) jTPedido.getValueAt(i, 0);
+       boolean igual = producto.getNombre().equals(tablaPed);
+      
+       if(igual && ListaPedido.size()>1){
+           pd.setCantidad (pd.getCantidad()+1) ;
+               i++;
+        } else {
+//           pd.setProducto(producto);
+           pd.setCantidad(1);
+       }
+    }
+          cargarTablaPedido(producto);
+          jTPedido.repaint();
         }
         
     }//GEN-LAST:event_jBAgregarActionPerformed
@@ -283,8 +297,10 @@ private Mesero m=null;
       
         
      for (PedidoProducto p : ListaPedido) {
+         System.out.println("pedido producto en ordenar"+ p);
         ppdata.NuevoPedidoProducto(p);
         
+         System.out.println("pedido en ordenar"+ p.getProducto());
         } 
 
     }//GEN-LAST:event_jBOrdenarActionPerformed
@@ -330,8 +346,8 @@ public void cargarTablaPedido(Producto producto){
         double total=(producto.getPrecio()*1);
         pedido.setTotal(total);
         pdata.actualizarTotal(pedido);
-        sumarProductos();
-        
+//        sumarProductos();
+            System.out.println("producto tabla pedido" + producto);
         PedidoProducto pp = new PedidoProducto(pedido, producto, cantidad);
         ListaPedido.add(pp);
         System.out.println("idpedido"+pedido.getIdpedido());
@@ -353,8 +369,9 @@ public void cargarTablaPedido(Producto producto){
 
         double total=(producto.getPrecio()*1);
         pedido.setTotal(total);
-        PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
-        
+        PedidoProducto pp = new PedidoProducto();
+        pp.setPedido(pedido);
+        pp.setProducto(producto);
         ListaPedido.add(pp);
 
         jTPedido.repaint();
@@ -403,6 +420,8 @@ public void cargarComboMesa(){
 
 public void sumarProductos(){
     
+    
+    
 //    
 //    for (int i = 0; i < ListaPedido.size(); i++) {
 //    PedidoProducto pd = ListaPedido.get(i);
@@ -416,16 +435,18 @@ public void sumarProductos(){
 //}
 //    
     
-    for (int i = 0; i<ListaPedido.size(); i++){
-        String tablaPed = (String) jTPedido.getValueAt(i, 0);
+//    for (int i = 0; i<ListaPedido.size(); i++){
+       int i= 0;
         for (PedidoProducto pd : ListaPedido) {
+           
+       String tablaPed = (String) jTPedido.getValueAt(i, 0);
        boolean igual = pd.getProducto().getNombre().equals(tablaPed);
       
        if(igual && ListaPedido.size()>1){
            cantidad = (Integer)jTPedido.getValueAt(i, 1) + 1;
         jTPedido.setValueAt(cantidad, i, 1);
         ListaPedido.remove(pd);
-       }
+        i++;
         } 
     }
 
