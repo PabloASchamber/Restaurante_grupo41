@@ -250,7 +250,11 @@ private Mesero m=null;
     if (filas != -1) {
         Integer id = Integer.valueOf(modelo.getValueAt(filas, 2).toString().trim());
         Producto producto = prodat.buscarProducto(id);
-
+     
+        if (jCBMesa.getSelectedItem() != null) {
+        Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
+        PedidoData pdata = new PedidoData();
+        
         boolean productoEnLista = false;
 
         for (PedidoProducto pd : ListaPedido) {
@@ -264,12 +268,31 @@ private Mesero m=null;
 
         if (!productoEnLista) {
             // Si el producto no está en la lista, agrégalo con cantidad 1
+            LocalDate fecha=LocalDate.now();
+        pedido= new Pedido();
+        pedido.setMesero(this.m);
+        pedido.setMesa(mesa);
+        pedido.setTotal(0);
+        pedido.setFechaHora(fecha);
+            System.out.println("pedido sin id "+pedido);
+        pdata.agregarPedido(pedido);
+         System.out.println("pedido con id "+pedido);
             PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
             ListaPedido.add(pp);
-        }
+            double total=(pp.getProducto().getPrecio()*pp.getCantidad());
+        pedido.setTotal(total);
+        
+        
+        ListaPedido.add(pp);
+             }
+        
 
         cargarTablaPedido();
         jTPedido.repaint();
+      
+    } else{
+       JOptionPane.showMessageDialog(null, "Seleccione una mesa");
+    }
     }
         
 
@@ -340,9 +363,9 @@ public void cargarTablaPedido(){
      Iterator<PedidoProducto> iterator = ListaPedido.iterator();
     while (iterator.hasNext()) {
         PedidoProducto pd = iterator.next();
-        if (jCBMesa.getSelectedItem() != null) {
-        Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
-        PedidoData pdata = new PedidoData();
+//        if (jCBMesa.getSelectedItem() != null) {
+//        Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
+//        PedidoData pdata = new PedidoData();
         
         if (pedido !=null){
             System.out.println("if !=null");
@@ -360,29 +383,29 @@ public void cargarTablaPedido(){
          jTPedido.repaint();
         } else{
                 System.out.println("if =null");
-        LocalDate fecha=LocalDate.now();
-        pedido= new Pedido();
-        pedido.setMesero(this.m);
-        pedido.setMesa(mesa);
-        pedido.setTotal(0);
-        pedido.setFechaHora(fecha);
-            System.out.println("pedido sin id "+pedido);
-        pdata.agregarPedido(pedido);
-         System.out.println("pedido con id "+pedido);
+//        LocalDate fecha=LocalDate.now();
+//        pedido= new Pedido();
+//        pedido.setMesero(this.m);
+//        pedido.setMesa(mesa);
+//        pedido.setTotal(0);
+//        pedido.setFechaHora(fecha);
+//            System.out.println("pedido sin id "+pedido);
+//        pdata.agregarPedido(pedido);
+//         System.out.println("pedido con id "+pedido);
 
-        double total=(pd.getProducto().getPrecio()*pd.getCantidad());
-        pedido.setTotal(total);
-        PedidoProducto pp = new PedidoProducto();
-        pp.setPedido(pedido);
-        pp.setProducto(pd.getProducto());
-        ListaPedido.add(pp);
+//        double total=(pd.getProducto().getPrecio()*pd.getCantidad());
+//        pedido.setTotal(total);
+//        PedidoProducto pp = new PedidoProducto();
+//        pp.setPedido(pedido);
+//        pp.setProducto(pd.getProducto());
+//        ListaPedido.add(pp);
 
         jTPedido.repaint();
-        }
+//        }
         
         modeloped.addRow(new Object[]{pd.getProducto().getNombre(), pd.getCantidad(), pd.getProducto().getPrecio()});
-    } else{
-       JOptionPane.showMessageDialog(null, "Seleccione una mesa");
+//    } else{
+//       JOptionPane.showMessageDialog(null, "Seleccione una mesa");
     }
     }
 }
