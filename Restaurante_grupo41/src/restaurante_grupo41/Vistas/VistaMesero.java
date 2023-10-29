@@ -5,6 +5,7 @@
 package restaurante_grupo41.Vistas;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.MeseroData;
 import restaurante_grupo41.Entidades.Mesero;
@@ -20,13 +21,16 @@ public class VistaMesero extends javax.swing.JInternalFrame {
      */
     public VistaMesero(Mesero mesero) {
         initComponents();
+       
         cargarTexto (mesero);
         if(mesero.isAdministrador()){
         cargarTabla ();
         cargarDatos();
+         
         }
     }
   
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,7 +170,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(39, Short.MAX_VALUE))))
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,8 +241,8 @@ public class VistaMesero extends javax.swing.JInternalFrame {
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         
+       
         MeseroData medat= new MeseroData ();
-        
          String nombre=jTNombre.getText().trim();
          String usuario= jTUsuario.getText().trim();
          String pass= jTPass.getText().trim();
@@ -260,7 +264,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBEliminarAdministradorActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        
+        try{
        MeseroData medat= new MeseroData ();
 
         String nombre=jTNombre.getText().trim();
@@ -271,13 +275,17 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         Mesero mesero= new Mesero (nombre,usuario, pass, id);
         
         medat.modificarMesero(mesero);
+         } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
        
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
        
+        try{
          MeseroData medat= new MeseroData ();
-
         String nombre=jTNombre.getText().trim();
         String usuario= jTUsuario.getText().trim();
         String pass= jTPass.getText().trim();
@@ -286,7 +294,10 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         Mesero mesero= new Mesero (nombre,usuario, pass, id);
         
         medat.eliminarMesero(id);
-        
+         } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
@@ -294,14 +305,21 @@ public class VistaMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbVolverActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        
-         int id=Integer.parseInt(jtIdMesero.getText().trim());
-        MeseroData mesdata = new MeseroData();
-        Mesero mesero = mesdata.buscarMeseroPorId(id);
-        jTNombre.setText(mesero.getNombre());
-        jTUsuario.setText(mesero.getUsuario());
-        jTPass.setText(mesero.getPass());
-        
+      
+        try {
+
+            int id = Integer.parseInt(jtIdMesero.getText().trim());
+            MeseroData mesdata = new MeseroData();
+            Mesero mesero = mesdata.buscarMeseroPorId(id);
+            if (mesero != null) {
+                jTNombre.setText(mesero.getNombre());
+                jTUsuario.setText(mesero.getUsuario());
+                jTPass.setText(mesero.getPass());
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
          
          
     }//GEN-LAST:event_jbBuscarActionPerformed

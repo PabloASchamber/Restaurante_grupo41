@@ -2,6 +2,7 @@
 package restaurante_grupo41.Vistas;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.MesaData;
 import restaurante_grupo41.Datos.PedidoData;
@@ -120,6 +121,12 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jlMesas.setText("Mesas");
 
         jLabel1.setText("capacidad");
+
+        jTfcap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTfcapActionPerformed(evt);
+            }
+        });
 
         jBAsignar.setText("Asignar");
         jBAsignar.addActionListener(new java.awt.event.ActionListener() {
@@ -298,13 +305,34 @@ public class VistaMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBmLibresActionPerformed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+
+         try {
+        
         int cap = Integer.parseInt(jTfcap.getText().trim());
-        MesaData md=new MesaData();
+        if(cap>9||cap<0){
+               JOptionPane.showMessageDialog(null, "La Capacidad maxima es de 8 personas.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }else{
+         MesaData md=new MesaData();
         Mesa mesa = new Mesa(cap);
         md.agregarMesas(mesa);
         cargarDatos();
         jtListaMesas.repaint();
+        }
+       
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "La Capacidad deber ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
+        
     }//GEN-LAST:event_jbAgregarActionPerformed
+
+    private void jTfcapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfcapActionPerformed
+       
+        
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTfcapActionPerformed
 
     /**
      * @param args the command line arguments
