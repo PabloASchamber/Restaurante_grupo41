@@ -4,6 +4,7 @@
  */
 package restaurante_grupo41.Vistas;
 
+import javax.swing.JOptionPane;
 import restaurante_grupo41.Datos.ProductoData;
 import restaurante_grupo41.Entidades.Producto;
 
@@ -191,55 +192,107 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         ProductoData prodat = new ProductoData();
-        int id=Integer.parseInt(jtf_Id.getText().trim());
-        Producto producto= prodat.buscarProducto(id);
+    
+    String idText = jtf_Id.getText().trim();
+    
+    try {
+        int id = Integer.parseInt(idText);
+        Producto producto = prodat.buscarProducto(id);
         
-       jTf_nombre.setText(producto.getNombre());
-       Double precio =producto.getPrecio();
-       jTf_precio.setText(precio.toString());
-       Integer stock = producto.getStock();
-       jTf_stock.setText(stock.toString());
-       String tipo = producto.getTipo();
-       
-         for (int i = 0; i<4;i++){
-      if (jCb_tipo.getItemAt(i).toString().contains (tipo)){
-          
-        jCb_tipo.setSelectedIndex(i);
-        }   
-       
-         }
-  
-      
-      
+        jTf_nombre.setText(producto.getNombre());
+        Double precio = producto.getPrecio();
+        jTf_precio.setText(precio.toString());
+        Integer stock = producto.getStock();
+        jTf_stock.setText(stock.toString());
+        String tipo = producto.getTipo();
+        
+        for (int i = 0; i < 4; i++) {
+            if (jCb_tipo.getItemAt(i).toString().contains(tipo)) {
+                jCb_tipo.setSelectedIndex(i);
+            }
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El ID debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        ProductoData prodat = new ProductoData();
-        String nombre=jTf_nombre.getText().trim();
-        double precio = Double.parseDouble(jTf_precio.getText().trim());
-        int stock= Integer.parseInt(jTf_stock.getText().trim());
-        
-        int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
-        String tipo = jCb_tipo.getItemAt(valor);
-        
-        Producto producto=new Producto(nombre, tipo, precio, stock, true);
-        prodat.agregarProducto(producto);
+            ProductoData prodat = new ProductoData();
+    String nombre = jTf_nombre.getText().trim();
+    String precioText = jTf_precio.getText().trim();
+    String stockText = jTf_stock.getText().trim();
+
+    if (nombre.matches(".*\\d+.*")) {
+        JOptionPane.showMessageDialog(null, "El nombre no debe contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    double precio;
+    int stock;
+
+    try {
+        precio = Double.parseDouble(precioText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El precio debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        stock = Integer.parseInt(stockText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El stock debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
+    String tipo = jCb_tipo.getItemAt(valor);
+
+    Producto producto = new Producto(nombre, tipo, precio, stock, true);
+    prodat.agregarProducto(producto);
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
          ProductoData prodat = new ProductoData();
-         int id= Integer.parseInt(jtf_Id.getText().trim());
-        String nombre=jTf_nombre.getText().trim();
-        double precio = Double.parseDouble(jTf_precio.getText().trim());
-        int stock= Integer.parseInt(jTf_stock.getText().trim());
-        
-        int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
-        System.out.println(valor);
-        System.out.println(jCb_tipo.getSelectedItem().toString());
-        String tipo = (String) jCb_tipo.getItemAt(valor);
-        
-        Producto producto=new Producto(id, nombre, tipo, precio, stock, true );
-        prodat.modificarProducto(producto);
+    int id;
+
+    try {
+        id = Integer.parseInt(jtf_Id.getText().trim());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    String nombre = jTf_nombre.getText().trim();
+    String precioText = jTf_precio.getText().trim();
+    String stockText = jTf_stock.getText().trim();
+
+    if (nombre.matches(".*\\d+.*")) {
+        JOptionPane.showMessageDialog(null, "El nombre no debe contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    double precio;
+    int stock;
+
+    try {
+        precio = Double.parseDouble(precioText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El precio debe ser un número decimal válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        stock = Integer.parseInt(stockText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El stock debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    int valor = valorTipo(jCb_tipo.getSelectedItem().toString());
+    String tipo = jCb_tipo.getItemAt(valor);
+
+    Producto producto = new Producto(id, nombre, tipo, precio, stock, true);
+    prodat.modificarProducto(producto);
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed

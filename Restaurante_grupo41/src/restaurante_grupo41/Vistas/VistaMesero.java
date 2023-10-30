@@ -10,10 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.MeseroData;
 import restaurante_grupo41.Entidades.Mesero;
 
-/**
- *
- * @author CLAY
- */
 public class VistaMesero extends javax.swing.JInternalFrame {
 
     /**
@@ -249,7 +245,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
          
          Mesero mesero= new Mesero (nombre, usuario, pass);
          medat.agregarMesero(mesero);
-        
+         jTable1.repaint();
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jBEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarAdministradorActionPerformed
@@ -261,25 +257,32 @@ public class VistaMesero extends javax.swing.JInternalFrame {
          Mesero mesero= medat.buscarMeseroPorId(id);
          medat.eliminarAdministrador(mesero);
           }
+           jTable1.repaint();
     }//GEN-LAST:event_jBEliminarAdministradorActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        try{
-       MeseroData medat= new MeseroData ();
+MeseroData medat = new MeseroData();
 
-        String nombre=jTNombre.getText().trim();
-        String usuario= jTUsuario.getText().trim();
-        String pass= jTPass.getText().trim();
-        int id= Integer.parseInt(jtIdMesero.getText().trim());
-       
-        Mesero mesero= new Mesero (nombre,usuario, pass, id);
+    String nombre = jTNombre.getText().trim();
+    String usuario = jTUsuario.getText().trim();
+    String pass = jTPass.getText().trim();
+    String idText = jtIdMesero.getText().trim();
+
+    // Validar que el id sea un número entero
+    try {
+        int id = Integer.parseInt(idText);
         
-        medat.modificarMesero(mesero);
-         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        // Validar que el nombre no contenga números
+        if (!nombre.matches(".*\\d+.*")) {
+            Mesero mesero = new Mesero(nombre, usuario, pass, id);
+            medat.modificarMesero(mesero);
+        } else {
+            JOptionPane.showMessageDialog(null, "El nombre no debe contener números.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-       
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El id debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    jTable1.repaint();
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -298,6 +301,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        jTable1.repaint();
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed

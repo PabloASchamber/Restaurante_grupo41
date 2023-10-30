@@ -243,22 +243,20 @@ public class VistaPedido extends javax.swing.JInternalFrame {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         ProductoData prodat = new ProductoData();
-        PedidoProductoData ppdata = new PedidoProductoData();
+ 
         validarPedido();
         int filas = jTMenu.getSelectedRow();
         if (filas != -1) {
             Integer id = Integer.valueOf(modelo.getValueAt(filas, 2).toString().trim());
             Producto producto = prodat.buscarProducto(id);
-            Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
-            PedidoData pdata = new PedidoData();
-
+           Pedido pedido = validarPedido();
             boolean productoEnLista = false;
 
             for (PedidoProducto pd : ListaPedido) {
                 if (pd.getProducto().getNombre().equals(producto.getNombre())) {
                     // Si el producto ya está en la lista, actualiza la cantidad
                     pd.setCantidad(pd.getCantidad() + 1);
-                    ppdata.cambiarPedido(pd);
+                 
                     productoEnLista = true;
                     break;
                 }
@@ -267,7 +265,6 @@ public class VistaPedido extends javax.swing.JInternalFrame {
             if (!productoEnLista) {
                 // Si el producto no está en la lista, agrégalo con cantidad 1
                 PedidoProducto pp = new PedidoProducto(pedido, producto, 1);
-                ppdata.NuevoPedidoProducto(pp);
                 ListaPedido.add(pp);
             }
             cargarTablaPedido();
@@ -299,6 +296,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
     private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
         PedidoProductoData ppdata = new PedidoProductoData();
         PedidoData pdata=new PedidoData();
+         Pedido pedido  = validarPedido();
         double total=0;
         for (PedidoProducto p : ListaPedido) {
      
@@ -335,16 +333,13 @@ public class VistaPedido extends javax.swing.JInternalFrame {
         modeloped.addColumn("precio");
         jTPedido.setModel(modeloped);
     }
-    private Pedido pedido;
+    
     private ArrayList<PedidoProducto> ListaPedido = new ArrayList<>();
 
     public void cargarTablaPedido() {
         jTPedido.getModel();
         modeloped.setRowCount(0);
         jTPedido.repaint();
-        PedidoData pdata = new PedidoData();
-        double total = 0.0;
-        validarPedido();
 
         for (PedidoProducto pd : ListaPedido) {
             modeloped.addRow(new Object[]{pd.getProducto().getNombre(), pd.getCantidad(), pd.getProducto().getPrecio()});
@@ -355,11 +350,12 @@ public class VistaPedido extends javax.swing.JInternalFrame {
 
     }
 
-    public void validarPedido() {
+    public Pedido validarPedido() {
         PedidoData pdata = new PedidoData();
         Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
-        pedido = pdata.buscarPedidoMesa(mesa.getNumero());
-        if (pedido == null) {
+        Pedido pedido = pdata.buscarPedidoMesa(mesa.getNumero());
+        System.out.println("validar pedido antes del if"+pedido);
+        if (pedido.getIdpedido() == 0) {
             LocalDate fecha = LocalDate.now();
             pedido = new Pedido();
             pedido.setMesero(this.m);
@@ -367,8 +363,15 @@ public class VistaPedido extends javax.swing.JInternalFrame {
             pedido.setTotal(0);
             pedido.setFechaHora(fecha);
             pdata.agregarPedido(pedido);
-
+            System.out.println("id pedido"+pedido.getIdpedido());
+            Pedido p= pdata.buscarPedidoMesa(mesa.getNumero());
+            int id=p.getIdpedido();
+            System.out.println("id "+id);
+            pedido.setIdpedido(id);
+            System.out.println("pedido pots id "+pedido.getIdpedido());
+            
         }
+        return pedido;
 
     }
 

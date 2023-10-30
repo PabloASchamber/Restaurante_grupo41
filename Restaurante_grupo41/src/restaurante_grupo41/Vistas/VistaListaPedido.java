@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package restaurante_grupo41.Vistas;
 
 import java.util.ArrayList;
@@ -166,6 +163,9 @@ public class VistaListaPedido extends javax.swing.JInternalFrame {
          int nro=mesa.getNumero();
          Pedido pedido = pd.buscarPedidoMesa(nro);
           pd.cobrarPedido(pedido.getIdpedido());
+          modelo.setRowCount(0);
+          jTable1.repaint();
+           jLTotal.setText("");
         }
         
              
