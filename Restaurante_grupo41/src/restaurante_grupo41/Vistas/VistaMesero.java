@@ -103,14 +103,14 @@ public class VistaMesero extends javax.swing.JInternalFrame {
             }
         });
 
-        jBEliminarAdministrador.setText("Eliminar");
+        jBEliminarAdministrador.setText("Remover");
         jBEliminarAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarAdministradorActionPerformed(evt);
             }
         });
 
-        jLAdministrador.setText("Administrador");
+        jLAdministrador.setText("ADMINISTRADOR");
 
         jLabel3.setText("Nombre");
 
@@ -165,7 +165,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(27, Short.MAX_VALUE))))
+                        .addContainerGap(15, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,12 +175,17 @@ public class VistaMesero extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jtIdMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBuscar))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAgregar)
-                    .addComponent(jLabel3)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbAgregar)
+                        .addGap(39, 39, 39)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbModificar)
                     .addComponent(jLabel4)
@@ -241,7 +246,9 @@ public class VistaMesero extends javax.swing.JInternalFrame {
          
          Mesero mesero= new Mesero (nombre, usuario, pass);
          medat.agregarMesero(mesero);
+         cargarDatos();
          jTable1.repaint();
+         
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jBEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarAdministradorActionPerformed
@@ -253,6 +260,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
          Mesero mesero= medat.buscarMeseroPorId(id);
          medat.eliminarAdministrador(mesero);
           }
+          cargarDatos ();
            jTable1.repaint();
     }//GEN-LAST:event_jBEliminarAdministradorActionPerformed
 
@@ -278,6 +286,7 @@ MeseroData medat = new MeseroData();
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "El id debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+    cargarDatos();
     jTable1.repaint();
     }//GEN-LAST:event_jbModificarActionPerformed
 
@@ -297,6 +306,7 @@ MeseroData medat = new MeseroData();
             JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        cargarDatos();
         jTable1.repaint();
     }//GEN-LAST:event_jbEliminarActionPerformed
 

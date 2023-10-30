@@ -309,7 +309,7 @@ public class VistaMain extends javax.swing.JFrame {
             jDesktopPane.add(vpe);
         }
         vpe.setVisible(true);
-
+         jDesktopPane.add(vpe);  // agregamos esta linea el 30/10 para que la ventana pedido vuelva a cargar
 
     }//GEN-LAST:event_jBPedidoActionPerformed
 
