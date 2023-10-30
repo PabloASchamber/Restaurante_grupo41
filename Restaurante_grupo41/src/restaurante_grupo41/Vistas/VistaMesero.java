@@ -368,10 +368,11 @@ MeseroData medat = new MeseroData();
     private DefaultTableModel modelo = new DefaultTableModel();
 
     public void cargarTabla (){
-        modelo.addColumn ("nombre");
-        modelo.addColumn ("usuario");
-        modelo.addColumn ("contraseña");
-        modelo.addColumn ("id");
+        modelo.addColumn ("Nombre");
+        modelo.addColumn ("Usuario");
+        modelo.addColumn ("Contraseña");
+        modelo.addColumn ("Id");
+        modelo.addColumn("Administrador");
         jTable1.setModel(modelo);
     }
     
@@ -387,7 +388,7 @@ MeseroData medat = new MeseroData();
         
         for (Mesero mesero: meseros) {
            
-            modelo.addRow(new Object[]{ mesero.getNombre(),mesero.getUsuario(),mesero.getPass(),mesero.getIdMesero() });
+            modelo.addRow(new Object[]{ mesero.getNombre(),mesero.getUsuario(),mesero.getPass(),mesero.getIdMesero(), mesero.isAdministrador() });
         }
 
     }
