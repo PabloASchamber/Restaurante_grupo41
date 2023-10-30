@@ -189,7 +189,7 @@ public class MesaData {
              ps.setInt(1, numero);
              int exito = ps.executeUpdate();
                if (exito>0) {
-               JOptionPane.showMessageDialog(null, "la mesa "+numero+" esta disponible");
+               JOptionPane.showMessageDialog(null, "la mesa "+numero+" está disponible");
                }else{
                    JOptionPane.showMessageDialog(null, "error al acceder a la tabla mesa");
                }
@@ -232,7 +232,7 @@ public class MesaData {
              ps.setInt(1, numero);
              int exito = ps.executeUpdate();
                if (exito>0) {
-               JOptionPane.showMessageDialog(null, "la mesa "+numero+" está ocupada");
+               JOptionPane.showMessageDialog(null, "la mesa "+numero+" se asignó correctamente");
                }else{
                    JOptionPane.showMessageDialog(null, "error al acceder a la tabla mesa");
                }
