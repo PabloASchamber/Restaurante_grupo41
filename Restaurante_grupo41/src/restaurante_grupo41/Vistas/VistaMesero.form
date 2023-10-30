@@ -216,6 +216,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtIdMesero">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtIdMeseroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBAsignarAdministrador">
           <Properties>

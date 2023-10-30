@@ -96,6 +96,12 @@ public class VistaMesero extends javax.swing.JInternalFrame {
 
         jLabel1.setText("ID");
 
+        jtIdMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIdMeseroActionPerformed(evt);
+            }
+        });
+
         jBAsignarAdministrador.setText("Asignar");
         jBAsignarAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,6 +339,10 @@ MeseroData medat = new MeseroData();
          
          
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jtIdMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdMeseroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtIdMeseroActionPerformed
 
     
     public void cargarTexto (Mesero m){
