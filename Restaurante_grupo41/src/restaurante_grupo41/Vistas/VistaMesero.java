@@ -22,6 +22,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         if(mesero.isAdministrador()){
         cargarTabla ();
         cargarDatos();
+       
          
         }
     }
@@ -425,4 +426,8 @@ MeseroData medat = new MeseroData();
     private javax.swing.JButton jbVolver;
     private javax.swing.JTextField jtIdMesero;
     // End of variables declaration//GEN-END:variables
+
+    private void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
