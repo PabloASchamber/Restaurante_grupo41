@@ -314,6 +314,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
     private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
         PedidoProductoData ppdata = new PedidoProductoData();
         PedidoData pdata=new PedidoData();
+        MesaData mdat=new MesaData();
          Pedido pedido  = validarPedido();
         double total=0;
         for (PedidoProducto p : ListaPedido) {
@@ -323,6 +324,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
             total += subtotal;
          
         }
+        mdat.mesaAtendida(pedido.getMesa().getNumero());
           pedido.setTotal(total);
         System.out.println("total " + total);
        pdata.actualizarTotal(pedido);
