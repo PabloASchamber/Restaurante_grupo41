@@ -368,7 +368,7 @@ public class VistaMain extends javax.swing.JFrame {
             vpe = new VistaPedido(m);
 //            jDesktopPane.add(vpe);
         }
-        
+         vpe = new VistaPedido(m);
         vpe.setVisible (true);
         jDesktopPane.add(vpe);  // agregamos esta linea el 30/10 para que la ventana pedido vuelva a cargar
          centrarVentana (vpe);
