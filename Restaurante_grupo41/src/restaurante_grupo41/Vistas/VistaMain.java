@@ -343,7 +343,7 @@ public class VistaMain extends javax.swing.JFrame {
         jLNombre.setText("");
         jPanelOpciones.setVisible(false);
         login.setVisible(true);
-        this.m = null;
+        m = new Mesero();
         vistaMesero.dispose();
 
     }//GEN-LAST:event_jBSalirActionPerformed
@@ -359,7 +359,7 @@ public class VistaMain extends javax.swing.JFrame {
 
     private void jBMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMeseroActionPerformed
 
-//        VistaMesero vme= new VistaMesero (m); // CORREGIR REVISAR
+//        VistaMesero vme= new VistaMesero (m); 
 //        if (vistaMesero == null) {
             vistaMesero = new VistaMesero(m);
              vistaMesero.setVisible(true);
