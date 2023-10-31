@@ -170,6 +170,7 @@ public class VistaListaPedido extends javax.swing.JInternalFrame {
     private void jBCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCobrarActionPerformed
       
         PedidoData pd = new PedidoData();
+        PedidoProductoData ppd = new PedidoProductoData();
         
         if (jcbMesas.getSelectedItem()!=null){
          Mesa mesa= (Mesa) jcbMesas.getSelectedItem();
@@ -179,6 +180,9 @@ public class VistaListaPedido extends javax.swing.JInternalFrame {
           modelo.setRowCount(0);
           jTable1.repaint();
            jLTotal.setText("");
+           
+            ppd.eliminarPedido(pedido);
+            pd.eliminarPedido(pedido.getIdpedido());
 
         }
    
@@ -231,6 +235,8 @@ public class VistaListaPedido extends javax.swing.JInternalFrame {
      
      Double total= ped.getTotal();
      jLTotal.setText(total.toString());
+    }else{
+         jLTotal.setText("");
     }
      
       

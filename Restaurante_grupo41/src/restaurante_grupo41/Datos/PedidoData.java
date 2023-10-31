@@ -82,7 +82,7 @@ public class PedidoData {
 }
 
 
-    public void cancelarPedido (int id){
+    public void eliminarPedido (int id){
 
         String sql= "DELETE FROM pedido WHERE idpedido= ?";
         
@@ -96,7 +96,7 @@ public class PedidoData {
             
             if (exito > 0){
                 
-                JOptionPane.showMessageDialog(null, "Pedido cancelado correctamente");
+                JOptionPane.showMessageDialog(null, "Pedido borrado correctamente");
             }else{
                 
                JOptionPane.showMessageDialog(null, "No se encontró el Pedido"); 

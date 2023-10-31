@@ -294,11 +294,29 @@ public class VistaPedido extends javax.swing.JInternalFrame {
 
     private void jBQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBQuitarActionPerformed
 
-        int filas = jTPedido.getSelectedRow();
-        if (filas != -1) {
-            modeloped.removeRow(filas);
-            jTPedido.repaint();
+//        int filas = jTPedido.getSelectedRow();
+//        if (filas != -1) {
+//            modeloped.removeRow(filas);
+//            jTPedido.repaint();
+//        }
+ int filaSeleccionada = jTPedido.getSelectedRow();
+    if (filaSeleccionada != -1) {
+        // Obtén el nombre del producto en la fila seleccionada
+        String nombreProducto = (String) jTPedido.getValueAt(filaSeleccionada, 0);
+
+        // Itera sobre la lista de pedidos para encontrar el producto y eliminarlo
+        Iterator<PedidoProducto> iter = ListaPedido.iterator();
+        while (iter.hasNext()) {
+            PedidoProducto pd = iter.next();
+            if (pd.getProducto().getNombre().equals(nombreProducto)) {
+                iter.remove();
+            }
         }
+
+        // Actualiza la tabla de pedido
+        cargarTablaPedido();
+        jTPedido.repaint();
+    }
 
     }//GEN-LAST:event_jBQuitarActionPerformed
 
@@ -306,7 +324,12 @@ public class VistaPedido extends javax.swing.JInternalFrame {
 
         if (jCBMesa.getSelectedItem() != null) {
             Mesa mesa = (Mesa) jCBMesa.getSelectedItem();
-            jTPedido.repaint();
+       // Borra los elementos de la lista de pedidos
+        ListaPedido.clear();
+        
+        // Actualiza la tabla de pedido
+        cargarTablaPedido();
+        jTPedido.repaint();
         }
     }//GEN-LAST:event_jCBMesaActionPerformed
 

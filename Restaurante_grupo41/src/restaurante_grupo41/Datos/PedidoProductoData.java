@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import restaurante_grupo41.Entidades.Pedido;
 import restaurante_grupo41.Entidades.PedidoProducto;
 
 
@@ -36,7 +37,7 @@ public void NuevoPedidoProducto(PedidoProducto pp) {
         ResultSet rs = ps.getGeneratedKeys();
 
         if (rs.next()) {
-            JOptionPane.showMessageDialog(null, "Pedido producto agregado correctamente");
+            System.out.println("Pedido producto agregado correctamente");
         }
     } catch (SQLException ex) {
         Logger.getLogger(PedidoProductoData.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,14 +67,14 @@ public void NuevoPedidoProducto(PedidoProducto pp) {
     
     }
     
-    public void cancelarPedido(PedidoProducto pp){
-         String sql=" DELETE FROM pedidoproducto WHERE idPedidoProducto=?";
+    public void eliminarPedido(Pedido pp){
+         String sql=" DELETE FROM pedidoproducto WHERE idPedido=?";
          try {
              PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-             ps.setInt(1,pp.getPedidoProducto());
+             ps.setInt(1,pp.getIdpedido());
              int exito=ps.executeUpdate();
              if(exito>0){
-                  JOptionPane.showMessageDialog(null, "Pedido cancelado correctamente");
+                  JOptionPane.showMessageDialog(null, "Pedido eliminado correctamente");
              }else{
                   JOptionPane.showMessageDialog(null, "No se pudo cancelar el pedido");
               }
@@ -111,10 +112,6 @@ public void NuevoPedidoProducto(PedidoProducto pp) {
          }
           
          return listPedido;
-            
-        
-    
-    
     }
     
 }//fin

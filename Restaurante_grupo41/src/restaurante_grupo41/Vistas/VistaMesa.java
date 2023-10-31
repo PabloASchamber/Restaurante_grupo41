@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restaurante_grupo41.Datos.MesaData;
 import restaurante_grupo41.Datos.PedidoData;
+import restaurante_grupo41.Datos.PedidoProductoData;
 import restaurante_grupo41.Entidades.Mesa;
 import restaurante_grupo41.Entidades.Pedido;
 
@@ -259,10 +260,16 @@ public class VistaMesa extends javax.swing.JInternalFrame {
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         MesaData md = new MesaData();
+        PedidoData pdat = new PedidoData();
+        PedidoProductoData ppd = new PedidoProductoData();
         int filas = jtListaMesas.getSelectedRow();
         if (filas != -1){
             int nro=(int) modelo.getValueAt(filas,0);
+            modelo.setValueAt("", filas,3);
             md.limpiarMesa(nro);
+            Pedido pedido = pdat.buscarPedidoMesa(nro);
+            ppd.eliminarPedido(pedido);
+            pdat.eliminarPedido(pedido.getIdpedido());
         }
         cargarDatos();
         jtListaMesas.repaint();
