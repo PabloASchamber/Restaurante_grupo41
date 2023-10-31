@@ -74,7 +74,6 @@ public class VistaMain extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLNombre = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
-        jbListaPedido = new javax.swing.JButton();
         jBFactura = new javax.swing.JButton();
         login = new javax.swing.JPanel();
         jLUsuario = new javax.swing.JLabel();
@@ -85,7 +84,7 @@ public class VistaMain extends javax.swing.JFrame {
         jBIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(995, 720));
+        setPreferredSize(new java.awt.Dimension(985, 720));
 
         jDesktopPane.setBackground(new java.awt.Color(246, 245, 243));
 
@@ -146,16 +145,6 @@ public class VistaMain extends javax.swing.JFrame {
             }
         });
 
-        jbListaPedido.setBackground(new java.awt.Color(246, 245, 243));
-        jbListaPedido.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jbListaPedido.setText("Lista Pedidos");
-        jbListaPedido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbListaPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbListaPedidoActionPerformed(evt);
-            }
-        });
-
         jBFactura.setBackground(new java.awt.Color(246, 245, 243));
         jBFactura.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBFactura.setText("Factura");
@@ -182,7 +171,6 @@ public class VistaMain extends javax.swing.JFrame {
                     .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbListaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -197,19 +185,17 @@ public class VistaMain extends javax.swing.JFrame {
                     .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jBMesa)
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
                 .addComponent(jBMesero)
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
                 .addComponent(jBPedido)
-                .addGap(35, 35, 35)
-                .addComponent(jbListaPedido)
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
                 .addComponent(jBProducto)
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
                 .addComponent(jBFactura)
-                .addGap(60, 60, 60)
+                .addGap(85, 85, 85)
                 .addComponent(jBSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         login.setBackground(new java.awt.Color(246, 245, 243));
@@ -377,15 +363,6 @@ public class VistaMain extends javax.swing.JFrame {
         vpe.toFront();
     }//GEN-LAST:event_jBProductoActionPerformed
 
-    private void jbListaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListaPedidoActionPerformed
-        VistaListaPedido vlp = new VistaListaPedido();
-        vlp.setVisible(true);
-        jDesktopPane.add(vlp);
-        centrarVentana (vlp);
-         vpe.toFront();
-
-    }//GEN-LAST:event_jbListaPedidoActionPerformed
-
     private void jBPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidoActionPerformed
         if (vpe == null) {
             vpe = new VistaPedido(m);
@@ -395,7 +372,7 @@ public class VistaMain extends javax.swing.JFrame {
         vpe.setVisible (true);
         jDesktopPane.add(vpe);  // agregamos esta linea el 30/10 para que la ventana pedido vuelva a cargar
          centrarVentana (vpe);
-         
+          vpe.toFront();
          
     }//GEN-LAST:event_jBPedidoActionPerformed
 
@@ -459,7 +436,6 @@ public class VistaMain extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPPass;
     private javax.swing.JPanel jPanelOpciones;
     private javax.swing.JTextField jTUsuario;
-    private javax.swing.JButton jbListaPedido;
     private javax.swing.JPanel login;
     // End of variables declaration//GEN-END:variables
 }

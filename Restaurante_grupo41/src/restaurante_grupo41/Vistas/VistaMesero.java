@@ -196,31 +196,27 @@ public class VistaMesero extends javax.swing.JInternalFrame {
                                 .addGap(66, 66, 66)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(74, 74, 74)
                                 .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jtIdMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTPass, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTPass, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(282, 282, 282))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
             .addComponent(jLAdministrador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -276,97 +272,40 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAsignarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsignarAdministradorActionPerformed
-      MeseroData medat=new MeseroData();
-       int filas = jTable1.getSelectedRow();
-          if (filas != -1){
-         int id=(int) modelo.getValueAt(filas,3);
-        
-         Mesero mesero= medat.buscarMeseroPorId(id);
-         medat.agregarAdministrador(mesero);
-          }
-    }//GEN-LAST:event_jBAsignarAdministradorActionPerformed
-
-    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        
-       
-        MeseroData medat= new MeseroData ();
-         String nombre=jTNombre.getText().trim();
-         String usuario= jTUsuario.getText().trim();
-         String pass= jTPass.getText().trim();
-         
-         Mesero mesero= new Mesero (nombre, usuario, pass);
-         medat.agregarMesero(mesero);
-         cargarDatos();
-         jTable1.repaint();
-         
-    }//GEN-LAST:event_jbAgregarActionPerformed
-
     private void jBEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarAdministradorActionPerformed
-     MeseroData medat=new MeseroData();
-       int filas = jTable1.getSelectedRow();
-          if (filas != -1){
-         int id=(int) modelo.getValueAt(filas,3);
-        
-         Mesero mesero= medat.buscarMeseroPorId(id);
-         medat.eliminarAdministrador(mesero);
-          }
-          cargarDatos ();
-           jTable1.repaint();
+        MeseroData medat=new MeseroData();
+        int filas = jTable1.getSelectedRow();
+        if (filas != -1){
+            int id=(int) modelo.getValueAt(filas,3);
+
+            Mesero mesero= medat.buscarMeseroPorId(id);
+            medat.eliminarAdministrador(mesero);
+        }
+        cargarDatos ();
+        jTable1.repaint();
     }//GEN-LAST:event_jBEliminarAdministradorActionPerformed
 
-    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-MeseroData medat = new MeseroData();
+    private void jBAsignarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsignarAdministradorActionPerformed
+        MeseroData medat=new MeseroData();
+        int filas = jTable1.getSelectedRow();
+        if (filas != -1){
+            int id=(int) modelo.getValueAt(filas,3);
 
-    String nombre = jTNombre.getText().trim();
-    String usuario = jTUsuario.getText().trim();
-    String pass = jTPass.getText().trim();
-    String idText = jtIdMesero.getText().trim();
-
-    // Validar que el id sea un número entero
-    try {
-        int id = Integer.parseInt(idText);
-        
-        // Validar que el nombre no contenga números
-        if (!nombre.matches(".*\\d+.*")) {
-            Mesero mesero = new Mesero(nombre, usuario, pass, id);
-            medat.modificarMesero(mesero);
-        } else {
-            JOptionPane.showMessageDialog(null, "El nombre no debe contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+            Mesero mesero= medat.buscarMeseroPorId(id);
+            medat.agregarAdministrador(mesero);
         }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "El id debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    cargarDatos();
-    jTable1.repaint();
-    }//GEN-LAST:event_jbModificarActionPerformed
+    }//GEN-LAST:event_jBAsignarAdministradorActionPerformed
 
-    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-       
-        try{
-         MeseroData medat= new MeseroData ();
-        String nombre=jTNombre.getText().trim();
-        String usuario= jTUsuario.getText().trim();
-        String pass= jTPass.getText().trim();
-        int id= Integer.parseInt(jtIdMesero.getText().trim());
-       
-        Mesero mesero= new Mesero (nombre,usuario, pass, id);
-        
-        medat.eliminarMesero(id);
-         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        cargarDatos();
-        jTable1.repaint();
-    }//GEN-LAST:event_jbEliminarActionPerformed
+    private void jtIdMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdMeseroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtIdMeseroActionPerformed
 
     private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
         dispose ();
     }//GEN-LAST:event_jbVolverActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-      
+
         try {
 
             int id = Integer.parseInt(jtIdMesero.getText().trim());
@@ -381,13 +320,66 @@ MeseroData medat = new MeseroData();
             JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-         
-         
     }//GEN-LAST:event_jbBuscarActionPerformed
 
-    private void jtIdMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdMeseroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtIdMeseroActionPerformed
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+
+        try{
+            MeseroData medat= new MeseroData ();
+            String nombre=jTNombre.getText().trim();
+            String usuario= jTUsuario.getText().trim();
+            String pass= jTPass.getText().trim();
+            int id= Integer.parseInt(jtIdMesero.getText().trim());
+
+            Mesero mesero= new Mesero (nombre,usuario, pass, id);
+
+            medat.eliminarMesero(id);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El id debe ser  un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        cargarDatos();
+        jTable1.repaint();
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        MeseroData medat = new MeseroData();
+
+        String nombre = jTNombre.getText().trim();
+        String usuario = jTUsuario.getText().trim();
+        String pass = jTPass.getText().trim();
+        String idText = jtIdMesero.getText().trim();
+
+        // Validar que el id sea un número entero
+        try {
+            int id = Integer.parseInt(idText);
+
+            // Validar que el nombre no contenga números
+            if (!nombre.matches(".*\\d+.*")) {
+                Mesero mesero = new Mesero(nombre, usuario, pass, id);
+                medat.modificarMesero(mesero);
+            } else {
+                JOptionPane.showMessageDialog(null, "El nombre no debe contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El id debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        cargarDatos();
+        jTable1.repaint();
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+
+        MeseroData medat= new MeseroData ();
+        String nombre=jTNombre.getText().trim();
+        String usuario= jTUsuario.getText().trim();
+        String pass= jTPass.getText().trim();
+
+        Mesero mesero= new Mesero (nombre, usuario, pass);
+        medat.agregarMesero(mesero);
+        cargarDatos();
+        jTable1.repaint();
+    }//GEN-LAST:event_jbAgregarActionPerformed
 
     
     public void cargarTexto (Mesero m){
