@@ -48,28 +48,43 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         jCb_tipo = new javax.swing.JComboBox<>();
         jBVolver = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(246, 245, 243));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jBBuscar.setBackground(new java.awt.Color(236, 178, 46));
+        jBBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBBuscar.setText("Buscar");
+        jBBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscarActionPerformed(evt);
             }
         });
 
+        jBModificar.setBackground(new java.awt.Color(236, 178, 46));
+        jBModificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBModificar.setText("Modificar");
+        jBModificar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBModificarActionPerformed(evt);
             }
         });
 
+        jBEliminar.setBackground(new java.awt.Color(236, 178, 46));
+        jBEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBEliminar.setText("Eliminar");
+        jBEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
             }
         });
 
+        jBAgregar.setBackground(new java.awt.Color(236, 178, 46));
+        jBAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBAgregar.setText("Agregar");
+        jBAgregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarActionPerformed(evt);
@@ -78,15 +93,28 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         jLabel1.setText("ID");
 
+        jtf_Id.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel2.setText("Nombre");
+
+        jTf_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setText("Precio");
 
+        jTf_precio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel4.setText("Stock");
+
+        jTf_stock.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setText("Tipo");
 
+        jCb_tipo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jBVolver.setBackground(new java.awt.Color(236, 178, 46));
+        jBVolver.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBVolver.setText("Volver");
+        jBVolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51)));
         jBVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBVolverActionPerformed(evt);
@@ -129,7 +157,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                             .addComponent(jTf_precio, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                             .addComponent(jCb_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTf_stock))))
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +196,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                     .addComponent(jCb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jBVolver)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

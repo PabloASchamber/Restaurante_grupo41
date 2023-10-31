@@ -42,54 +42,69 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jTfcap = new javax.swing.JTextField();
         jBAsignar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(246, 245, 243));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(32767, 32767));
         setPreferredSize(new java.awt.Dimension(730, 620));
 
         jpVistaMesa.setPreferredSize(new java.awt.Dimension(734, 624));
 
+        jbAgregar.setBackground(new java.awt.Color(236, 178, 46));
         jbAgregar.setText("Agregar");
+        jbAgregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);
             }
         });
 
+        jBmLibres.setBackground(new java.awt.Color(236, 178, 46));
         jBmLibres.setText("Libres");
+        jBmLibres.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBmLibres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBmLibresActionPerformed(evt);
             }
         });
 
+        jbOcupada.setBackground(new java.awt.Color(236, 178, 46));
         jbOcupada.setText("Ocupadas");
+        jbOcupada.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbOcupada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbOcupadaActionPerformed(evt);
             }
         });
 
+        jbEliminar.setBackground(new java.awt.Color(236, 178, 46));
         jbEliminar.setText("Eliminar");
+        jbEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEliminarActionPerformed(evt);
             }
         });
 
+        jbAtendida.setBackground(new java.awt.Color(236, 178, 46));
         jbAtendida.setText("Atendida");
+        jbAtendida.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbAtendida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAtendidaActionPerformed(evt);
             }
         });
 
+        jbLimpiar.setBackground(new java.awt.Color(236, 178, 46));
         jbLimpiar.setText("Limpiar");
+        jbLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarActionPerformed(evt);
             }
         });
 
+        jtListaMesas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtListaMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -109,9 +124,13 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        jtListaMesas.setName(""); // NOI18N
         jScrollPane1.setViewportView(jtListaMesas);
 
+        jbVolver.setBackground(new java.awt.Color(236, 178, 46));
+        jbVolver.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbVolver.setText("Volver");
+        jbVolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51)));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);
@@ -120,15 +139,18 @@ public class VistaMesa extends javax.swing.JInternalFrame {
 
         jlMesas.setText("Mesas");
 
-        jLabel1.setText("capacidad");
+        jLabel1.setText("Capacidad");
 
+        jTfcap.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTfcap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTfcapActionPerformed(evt);
             }
         });
 
+        jBAsignar.setBackground(new java.awt.Color(236, 178, 46));
         jBAsignar.setText("Asignar");
+        jBAsignar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAsignarActionPerformed(evt);
@@ -139,10 +161,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jpVistaMesa.setLayout(jpVistaMesaLayout);
         jpVistaMesaLayout.setHorizontalGroup(
             jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVistaMesaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(244, 244, 244))
             .addGroup(jpVistaMesaLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,17 +185,21 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                                 .addComponent(jTfcap, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVistaMesaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311))
         );
         jpVistaMesaLayout.setVerticalGroup(
             jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpVistaMesaLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jlMesas)
+                .addGap(68, 68, 68)
                 .addGroup(jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpVistaMesaLayout.createSequentialGroup()
                         .addGroup(jpVistaMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpVistaMesaLayout.createSequentialGroup()
-                                .addComponent(jlMesas)
-                                .addGap(68, 68, 68)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64))
                             .addGroup(jpVistaMesaLayout.createSequentialGroup()
@@ -199,7 +221,7 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                         .addComponent(jTfcap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(jbEliminar)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
