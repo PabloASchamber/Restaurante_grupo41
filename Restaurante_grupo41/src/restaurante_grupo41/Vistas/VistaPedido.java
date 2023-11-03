@@ -347,7 +347,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
          
         }
        
-          pedido.setTotal(total);
+          pedido.setTotal(pedido.getTotal()+ total);
         System.out.println("total " + total);
        pdata.actualizarTotal(pedido);
     }//GEN-LAST:event_jBOrdenarActionPerformed
